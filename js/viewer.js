@@ -109,7 +109,8 @@ export class TwitchStreamXStarwake extends HTMLElement {
         });
         this.embed.addEventListener(Twitch.Embed.VIDEO_PLAY, sessionId => {
             this.dispatchEvent(
-                new CustomEvent('twitch-xstarwake.video.play', { detail: { embed: this.embed,his.embed, sessionId },
+                new CustomEvent('twitch-xstarwake.video.play', 
+                { detail: { embed: this.embed, sessionId },
             })
           );
         });
