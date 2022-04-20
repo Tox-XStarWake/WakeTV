@@ -10,7 +10,12 @@ export class TwitchStream extends HTMLElement {
             autoplay: { default: true },
             chat: { default: true },
             allowfullscreen: { default: false },
-            parent: { default: 'www.xstarwake.org', 'xstarwake.org', 'glitch.com', 'www-xstarwake-org.glitch.me', 'localhost' },
+            parent: { default: ['www.xstarwake.org', 
+            'xstarwake.org', 
+            'glitch.com', 
+            'www-xstarwake-org.glitch.me', 
+            'localhost'
+            ]},
         };
     }
 
