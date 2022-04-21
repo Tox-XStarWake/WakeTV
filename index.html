@@ -379,7 +379,7 @@
             ChefDuckiehandleOnline
           );
           ChefDuckieStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
+            Twitch.Embed.OFFLINE,
             ChefDuckiehandleOffline
           );
           ChefDuckieStream.removeEventListener(
@@ -406,7 +406,7 @@
             .getElementById("ChefDuckie-twitch-embed")
             .classList.add("hidden");
           ChefDuckieStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
+            Twitch.Embed.OFFLINE,
             ChefDuckiehandleOffline
           );
           ChefDuckieStream.addEventListener(
