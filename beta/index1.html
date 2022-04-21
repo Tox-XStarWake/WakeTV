@@ -59,7 +59,7 @@
             ],
       };
       
-      var player = new Twitch.Embed("twitch-player", options);
+      var player = new Twitch.Player("twitch-player", options);
       var embed = new Twitch.Embed("twitch-embed", options);
       player.addEventListener(Twitch.Player.READY, initiate)
       embed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
