@@ -9,10 +9,10 @@
         <meta name="author" content="Twitter: @Toxic__Salt">
         <link rel="shortcut icon" href="img/WakeTV_icon.ico">
 
-        <link rel="stylesheet" href="css/viewer.css" media="all" id="appcss">
+        <link rel="stylesheet" href="https://www.xstarwake.org/css/viewer.css" media="all" id="appcss">
 
         <!-- <script type="module" src="js/viewer.js"></script> -->
-        <script type="text/javascript" src="js/test.js"></script>
+        <script type="text/javascript" src="https://www.xstarwake.org/js/test.js"></script>
         <script type="text/javascript" src="https://embed.twitch.tv/embed/v1.js"></script>
 
         <script>
@@ -39,8 +39,8 @@
     <br>
     <br>
 
-    <div class="twitch">
-        <div id="twitch"></div>
+    <div class="twitch-embed">
+        <div id="twitch-embed"></div>
 
     <script>
     
@@ -59,10 +59,10 @@
             ],
       };
       
-      var player = new Twitch.Player("twitch", options);
-    
+      var player = new Twitch.Embed("twitch-player", options);
+      var embed = new Twitch.Embed("twitch-embed", options);
       player.addEventListener(Twitch.Player.READY, initiate)
-      //player.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
+      embed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
     
       function initiate() {
         player.addEventListener(Twitch.Player.ONLINE, handleOnline);
@@ -72,14 +72,14 @@
       }
     
       function handleOnline() {
-        document.getElementById("twitch").classList.remove('hide');
+        document.getElementById("twitch-embed").classList.remove('hide');
         player.removeEventListener(Twitch.Player.ONLINE, handleOnline);
         player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
         player.setMuted(false);
       }
     
       function handleOffline() {
-        document.getElementById("twitch").classList.add('hide');
+        document.getElementById("twitch-embed").classList.add('hide');
         player.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
         player.addEventListener(Twitch.Player.ONLINE, handleOnline);
         player.setMuted(true);
