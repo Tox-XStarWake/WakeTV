@@ -82,6 +82,7 @@ h3 {
     height: 0;
   }
 
+  /*
   #twitch-embed object, #twitch-embed iframe {
     position: absolute;
     top: 0;
@@ -89,6 +90,7 @@ h3 {
     width: 50%;
     height: 50%;
   }
+  */
 
   #twitch-player {
     position: relative;
@@ -96,7 +98,8 @@ h3 {
     padding-top: 25px;
     height: 0;
   }
-  
+ 
+  /*
   #twitch-player object, #twitch-player iframe {
     position: absolute;
     top: 0;
@@ -104,3 +107,4 @@ h3 {
     width: 50%;
     height: 50%;
   }
+  */

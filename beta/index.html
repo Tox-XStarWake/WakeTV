@@ -39,13 +39,16 @@
     <br>
     <br>
 
-    <div class="twitch">
-        <div id="twitch"></div>
+    <div class="twitch-embed"></div>
+        <div id="twitch-embed"></div>
+      
+    <!-- <div class="twitch-player">
+        <div id="twitch-player"></div> -->
 
     <script>
     
     var options = {
-        channel: "lkwilli",
+        channel: "summit1g",
         //width: 340,
         //height: 400,
         layout: "video-with-chat",
@@ -59,27 +62,26 @@
             ],
       };
       
-      var player = new Twitch.Player("twitch", options);
-    
+      var player = new Twitch.Player("twitch-player", options);
+      var embed = new Twitch.Embed("twitch-embed", options);
       player.addEventListener(Twitch.Player.READY, initiate)
-      //player.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
+      embed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
     
       function initiate() {
         player.addEventListener(Twitch.Player.ONLINE, handleOnline);
         player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
         player.removeEventListener(Twitch.Player.READY, initiate);
-        //player.addEventListener(Twitch.Embed.VIDEO_READY, initiate);
       }
     
       function handleOnline() {
-        document.getElementById("twitch").classList.remove('hide');
+        document.getElementById("twitch-embed").classList.remove('hide');
         player.removeEventListener(Twitch.Player.ONLINE, handleOnline);
         player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
         player.setMuted(false);
       }
     
       function handleOffline() {
-        document.getElementById("twitch").classList.add('hide');
+        document.getElementById("twitch-embed").classList.add('hide');
         player.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
         player.addEventListener(Twitch.Player.ONLINE, handleOnline);
         player.setMuted(true);
