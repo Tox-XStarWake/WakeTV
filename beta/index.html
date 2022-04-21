@@ -13,17 +13,57 @@
 
         <script type="module" src="js/viewer.js"></script>
         <script type="text/javascript" src="js/test.js"></script>
+        <script type="text/javascript" src="https://embed.twitch.tv/embed/v1.js"></script>
 
         <!-- <script src="http://www.xstarwake.org/js/ga-optout.js" type="text/javascript"></script> -->
-        
+
     </head>
 
     <body class="viewer-app" id="viewer-app">
 
 
         hello?
+    <br>
+    <br>
 
         <input type = "button" onclick = "testPOP()" value = "TEST 2">  
+    
+    <br>
+    <br>
+
+    <script>
+    
+    var options = {
+        channel: "lkwilli",
+        width: 500,
+        height: 620,
+      };
+      
+      var player = new Twitch.Player("twitch", options);
+    
+      player.addEventListener(Twitch.Player.READY, initiate)
+    
+      function initiate() {
+        player.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        player.removeEventListener(Twitch.Player.READY, initiate);
+      }
+    
+      function handleOnline() {
+        document.getElementById("twitch").classList.remove('hide');
+        player.removeEventListener(Twitch.Player.ONLINE, handleOnline);
+        player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        player.setMuted(false);
+      }
+    
+      function handleOffline() {
+        document.getElementById("twitch").classList.add('hide');
+        player.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
+        player.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        player.setMuted(true);
+      }
+
+    </script>
 
     </body>
 </html>
