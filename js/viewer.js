@@ -30,5 +30,6 @@ var options = {
   function myfunction( y ) {
 
     return y + 1;
-
+    alert( y + 1 );
+    
   }
