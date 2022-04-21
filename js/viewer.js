@@ -29,6 +29,4 @@ var options = {
 
   function myfunction( y ) {
     alert( "Hello" );
-    return y + 1;
   }
-  
