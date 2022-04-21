@@ -27,6 +27,6 @@ var options = {
     player.setMuted(true);
   }
 
-  function testPOP() {
+  export function testPOP() {
     alert( "Hello" );
   }
