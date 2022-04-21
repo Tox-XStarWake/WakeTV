@@ -26,7 +26,3 @@ var options = {
     player.addEventListener(Twitch.Player.ONLINE, handleOnline);
     player.setMuted(true);
   }
-
-  export function testPOP() {
-    alert( "Hello" );
-  }
