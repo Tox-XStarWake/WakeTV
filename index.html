@@ -172,7 +172,7 @@
             Toxic__SalthandleOnline
           );
           Toxic__SaltStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
+            Twitch.Embed.OFFLINE,
             Toxic__SalthandleOffline
           );
           Toxic__SaltStream.removeEventListener(
@@ -199,7 +199,7 @@
             .getElementById("Toxic__Salt-twitch-embed")
             .classList.add("hidden");
           Toxic__SaltStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
+            Twitch.Embed.OFFLINE,
             Toxic__SalthandleOffline
           );
           Toxic__SaltStream.addEventListener(
