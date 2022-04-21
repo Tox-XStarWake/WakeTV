@@ -379,7 +379,7 @@
             ChefDuckiehandleOnline
           );
           ChefDuckieStream.addEventListener(
-            Twitch.Embed.OFFLINE,
+            Twitch.Embed.VIDEO_READY,
             ChefDuckiehandleOffline
           );
           ChefDuckieStream.removeEventListener(
@@ -406,7 +406,7 @@
             .getElementById("ChefDuckie-twitch-embed")
             .classList.add("hidden");
           ChefDuckieStream.removeEventListener(
-            Twitch.Embed.OFFLINE,
+            Twitch.Embed.VIDEO_READY,
             ChefDuckiehandleOffline
           );
           ChefDuckieStream.addEventListener(
@@ -793,7 +793,7 @@
             LKwillihandleOnline
           );
           LKwilliStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
+            Twitch.Embed.OFFLINE,
             LKwillihandleOffline
           );
           LKwilliStream.removeEventListener(
@@ -820,7 +820,7 @@
             .getElementById("LKwilli-twitch-embed")
             .classList.add("hidden");
           LKwilliStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
+            Twitch.Embed.OFFLINE,
             LKwillihandleOffline
           );
           LKwilliStream.addEventListener(
