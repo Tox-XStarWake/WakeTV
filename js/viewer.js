@@ -27,6 +27,6 @@ var options = {
     player.setMuted(true);
   }
 
-  function myfunction( y ) {
+  function myfunction() {
     alert( "Hello" );
   }
