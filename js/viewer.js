@@ -28,8 +28,7 @@ var options = {
   }
 
   function myfunction( y ) {
-
-    return y + 1;
     alert( "Hello" );
-
+    return y + 1;
   }
+  
