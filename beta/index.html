@@ -32,11 +32,11 @@
     <div class="xstarwake-embed"></div>
         <div id="xstarwake-embed"></div>
       
-     <div class="xstarwake-player">
+     <div class="xstarwake-player"></div>
         <div id="xstarwake-player"></div>
 
     <script>
-    var options = {
+    var xstarwakeoptions = {
         channel: "xstarwake",
         width: 340,
         height: 400,
@@ -52,8 +52,8 @@
             ],
       };
       
-      var xstarwakeplayer = new Twitch.Player("xstarwake-player", options);
-      var xstarwakeembed = new Twitch.Embed("xstarwake-embed", options);
+      var xstarwakeplayer = new Twitch.Player("xstarwake-player", xstarwakeoptions);
+      var xstarwakeembed = new Twitch.Embed("xstarwake-embed", xstarwakeoptions);
       xstarwakeplayer.addEventListener(Twitch.Player.READY, initiate)
       xstarwakeembed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
     
@@ -81,7 +81,7 @@
 
     </script>
 
-    </div>
+
 
     <div class="toxic__salt-embed"></div>
         <div id="toxic__salt-embed"></div>
