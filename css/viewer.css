@@ -120,36 +120,6 @@ h3 {
     display: none;
 }
 
-#toxic__salt-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-}
-
-#toxic__salt-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#theelphyys-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-}
-
-#theelphyys-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
 .xstarwake-embed {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
@@ -158,6 +128,21 @@ h3 {
 }
 
 .xstarwake-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#toxic__salt-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+#toxic__salt-player {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
@@ -180,17 +165,183 @@ h3 {
     display: none;
 }
 
-.theelphyys-embed {
+#spacemages-embed {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
 }
 
-.theelphyys-player {
+#spacemages-player {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
     display: none;
 }
+
+.spacemages-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+.spacemages-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#chefduckie-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+#chefduckie-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.chefduckie-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+.chefduckie-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#deadinthescene-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+#deadinthescene-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.deadinthescene-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+.deadinthescene-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#doubleknees-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+#doubleknees-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.doubleknees-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+.doubleknees-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#fearsumbeard-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+#fearsumbeard-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.fearsumbeard-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+.fearsumbeard-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#kelling101-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+#kelling101-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.kelling101-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+.kelling101-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
