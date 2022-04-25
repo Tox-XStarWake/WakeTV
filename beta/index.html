@@ -52,29 +52,29 @@
             ],
       };
       
-      var player = new Twitch.Player("xstarwake-player", options);
-      var embed = new Twitch.Embed("xstarwake-embed", options);
-      player.addEventListener(Twitch.Player.READY, initiate)
-      embed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
+      var xstarwakeplayer = new Twitch.Player("xstarwake-player", options);
+      var xstarwakeembed = new Twitch.Embed("xstarwake-embed", options);
+      xstarwakeplayer.addEventListener(Twitch.Player.READY, initiate)
+      xstarwakeembed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
     
       function initiate() {
-        player.addEventListener(Twitch.Player.ONLINE, handleOnline);
-        player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
-        player.removeEventListener(Twitch.Player.READY, initiate);
+        xstarwakeplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        xstarwakeplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        xstarwakeplayer.removeEventListener(Twitch.Player.READY, initiate);
       }
     
       function handleOnline() {
         document.getElementById("xstarwake-embed").classList.remove('hide');
-        player.removeEventListener(Twitch.Player.ONLINE, handleOnline);
-        player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
-        player.setMuted(false);
+        xstarwakeplayer.removeEventListener(Twitch.Player.ONLINE, handleOnline);
+        xstarwakeplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        xstarwakeplayer.setMuted(false);
       }
     
       function handleOffline() {
         document.getElementById("xstarwake-embed").classList.add('hide');
-        player.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
-        player.addEventListener(Twitch.Player.ONLINE, handleOnline);
-        player.setMuted(true);
+        xstarwakeplayer.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
+        xstarwakeplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        xstarwakeplayer.setMuted(true);
       }
 
     </script>
@@ -104,29 +104,29 @@
             ],
       };
       
-      var toxic__saltplayer = new Twitch.Player("toxic__salt-player", options);
-      var toxic__saltembed = new Twitch.Embed("toxic__salt-embed", options);
-      toxic__saltplayer.addEventListener(Twitch.Player.READY, initiate)
-      toxic__saltembed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
+      var toxicsaltplayer = new Twitch.Player("toxic__salt-player", options);
+      var toxicsaltembed = new Twitch.Embed("toxic__salt-embed", options);
+      toxicsaltplayer.addEventListener(Twitch.Player.READY, initiate)
+      toxicsaltembed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
     
       function initiate() {
-        toxic__saltplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
-        toxic__saltplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
-        toxic__saltplayer.removeEventListener(Twitch.Player.READY, initiate);
+        toxicsaltplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        toxicsaltplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        toxicsaltplayer.removeEventListener(Twitch.Player.READY, initiate);
       }
     
       function handleOnline() {
         document.getElementById("toxic__salt-embed").classList.remove('hide');
-        toxic__saltplayer.removeEventListener(Twitch.Player.ONLINE, handleOnline);
-        toxic__saltplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
-        toxic__saltplayer.setMuted(false);
+        toxicsaltplayer.removeEventListener(Twitch.Player.ONLINE, handleOnline);
+        toxicsaltplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        toxicsaltplayer.setMuted(false);
       }
     
       function handleOffline() {
         document.getElementById("toxic__salt-embed").classList.add('hide');
-        toxic__saltplayer.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
-        toxic__saltplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
-        toxic__saltplayer.setMuted(true);
+        toxicsaltplayer.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
+        toxicsaltplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        toxicsaltplayer.setMuted(true);
       }
 
     </script>
