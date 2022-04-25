@@ -65,97 +65,97 @@ h3 {
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
-  }
+}
 
-  #twitch object, #twitch iframe {
+#twitch object, #twitch iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 50%;
     height: 50%;
-  }
+}
 
-  #twitch-embed {
+#twitch-embed {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
-  }
+}
 
-  #twitch-player {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none; 
-  }
-
- .twitch-embed {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
- }
-
- .twitch-player {
+#twitch-player {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
     display: none; 
- }
+}
 
- #xstarwake-embed {
+.twitch-embed {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
- }
+}
 
- #xstarwake-player {
+.twitch-player {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
-    display: none;
- }
+    display: none; 
+}
 
- #toxic__salt-embed {
+#xstarwake-embed {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
- }
+}
 
- #toxic__salt-player {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
- }
-
- #theelphyys-embed {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
- }
-
- #theelphyys-player {
+#xstarwake-player {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
     display: none;
- }
+}
+
+#toxic__salt-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+#toxic__salt-player {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#theelphyys-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+#theelphyys-player {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
 
 .xstarwake-embed {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
- }
+}
 
 .xstarwake-player {
     position: relative;
@@ -163,14 +163,14 @@ h3 {
     padding-top: 25px;
     height: 0;
     display: none;
- }
+}
 
 .toxic__salt-embed {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
- }
+}
 
 .toxic__salt-player {
     position: relative;
@@ -178,14 +178,14 @@ h3 {
     padding-top: 25px;
     height: 0;
     display: none;
- }
+}
 
 .theelphyys-embed {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
- }
+}
 
 .theelphyys-player {
     position: relative;
@@ -193,4 +193,4 @@ h3 {
     padding-top: 25px;
     height: 0;
     display: none;
- }
+}
