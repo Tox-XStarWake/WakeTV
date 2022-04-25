@@ -27,7 +27,7 @@
 
     </head>
 
-    <body class="viewer-app" id="viewer-app">
+    <body>
 
     <div class="xstarwake-embed"></div>
         <div id="xstarwake-embed"></div>
@@ -156,29 +156,29 @@
             ],
       };
       
-      var player = new Twitch.Player("theelphyys-player", options);
-      var embed = new Twitch.Embed("theelphyys-embed", options);
-      player.addEventListener(Twitch.Player.READY, initiate)
-      embed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
+      var theelphyysplayer = new Twitch.Player("theelphyys-player", options);
+      var theelphyysembed = new Twitch.Embed("theelphyys-embed", options);
+      theelphyysplayer.addEventListener(Twitch.Player.READY, initiate)
+      theelphyysembed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
     
       function initiate() {
-        player.addEventListener(Twitch.Player.ONLINE, handleOnline);
-        player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
-        player.removeEventListener(Twitch.Player.READY, initiate);
+        theelphyysplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        theelphyysplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        theelphyysplayer.removeEventListener(Twitch.Player.READY, initiate);
       }
     
       function handleOnline() {
         document.getElementById("theelphyys-embed").classList.remove('hide');
-        player.removeEventListener(Twitch.Player.ONLINE, handleOnline);
-        player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
-        player.setMuted(false);
+        theelphyysplayer.removeEventListener(Twitch.Player.ONLINE, handleOnline);
+        theelphyysplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        theelphyysplayer.setMuted(false);
       }
     
       function handleOffline() {
         document.getElementById("theelphyys-embed").classList.add('hide');
-        player.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
-        player.addEventListener(Twitch.Player.ONLINE, handleOnline);
-        player.setMuted(true);
+        theelphyysplayer.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
+        theelphyysplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        theelphyysplayer.setMuted(true);
       }
 
     </script>
