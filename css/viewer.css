@@ -345,14 +345,14 @@ h3 {
     display: none;
 }
 
-#fearsombeard-embed {
+#fearsumbeard-embed {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
 }
 
-#fearsombeard-player {
+#fearsumbeard-player {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
@@ -360,14 +360,14 @@ h3 {
     display: none;
 }
 
-.fearsombeard-embed {
+.fearsumbeard-embed {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
 }
 
-.fearsombeard-player {
+.fearsumbeard-player {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
