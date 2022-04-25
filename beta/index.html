@@ -65,6 +65,7 @@
     
       function handleOnline() {
         document.getElementById("xstarwake-embed").classList.remove('hide');
+        document.getElementByClass("xstarwake-embed").classList.add('hide');
         xstarwakeplayer.removeEventListener(Twitch.Player.ONLINE, handleOnline);
         xstarwakeplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
         xstarwakeplayer.setMuted(false);
@@ -72,6 +73,7 @@
     
       function handleOffline() {
         document.getElementById("xstarwake-embed").classList.add('hide');
+        document.getElementByClass("xstarwake-embed").classList.add('hide');
         xstarwakeplayer.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
         xstarwakeplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
         xstarwakeplayer.setMuted(true);
