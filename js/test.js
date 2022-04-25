@@ -1,3 +1,3 @@
-function testPOP() {
-    alert( "Hello" );
+function testPOP(StreamName) {
+    alert( StreamName );
   }
