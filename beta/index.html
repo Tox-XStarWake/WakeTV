@@ -29,26 +29,15 @@
 
     <body class="viewer-app" id="viewer-app">
 
-
-        hello?
-    <br>
-    <br>
-
-        <input type = "button" onclick = "testPOP('Vinc3ntVega')" value = "TEST 2">  
-    
-    <br>
-    <br>
-
     <div class="twitch-embed"></div>
-        <div id="twitch-embed"></div>
+        <div id="xstarwake-embed"></div>
       
      <div class="twitch-player">
-        <div id="twitch-player"></div>
+        <div id="xstarwake-player"></div>
 
     <script>
-    
     var options = {
-        channel: "summit1g",
+        channel: "xstarwake",
         width: 340,
         height: 400,
         layout: "video-with-chat",
@@ -63,8 +52,8 @@
             ],
       };
       
-      var player = new Twitch.Player("twitch-player", options);
-      var embed = new Twitch.Embed("twitch-embed", options);
+      var player = new Twitch.Player("xstarwake-player", options);
+      var embed = new Twitch.Embed("xstarwake-embed", options);
       player.addEventListener(Twitch.Player.READY, initiate)
       embed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
     
@@ -75,14 +64,14 @@
       }
     
       function handleOnline() {
-        document.getElementById("twitch-embed").classList.remove('hide');
+        document.getElementById("xstarwake-embed").classList.remove('hide');
         player.removeEventListener(Twitch.Player.ONLINE, handleOnline);
         player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
         player.setMuted(false);
       }
     
       function handleOffline() {
-        document.getElementById("twitch-embed").classList.add('hide');
+        document.getElementById("xstarwake-embed").classList.add('hide');
         player.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
         player.addEventListener(Twitch.Player.ONLINE, handleOnline);
         player.setMuted(true);
@@ -92,14 +81,13 @@
 
     </div>
 
-    <div class="Vinc3ntVega-embed"></div>
-        <div id="Vinc3ntVega-embed"></div>
-      
-     <div class="Vinc3ntVega-player">
-        <div id="Vinc3ntVega-player"></div>
-      <script>
-        ViewerStream('Vinc3ntVega')
-      </script>
-      </div>
+
+
+
+
+
+
+
+
     </body>
 </html>
