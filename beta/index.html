@@ -90,7 +90,7 @@
         <div id="toxic__salt-player"></div>
 
     <script>
-    var options = {
+    var toxicsaltoptions = {
         channel: "toxic__salt",
         width: 340,
         height: 400,
@@ -106,28 +106,28 @@
             ],
       };
       
-      var toxicsaltplayer = new Twitch.Player("toxic__salt-player", options);
-      var toxicsaltembed = new Twitch.Embed("toxic__salt-embed", options);
-      toxicsaltplayer.addEventListener(Twitch.Player.READY, initiate)
-      toxicsaltembed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
+      var toxicsaltplayer = new Twitch.Player("toxic__salt-player", toxicsaltoptions);
+      var toxicsaltembed = new Twitch.Embed("toxic__salt-embed", toxicsaltoptions);
+      toxicsaltplayer.addEventListener(Twitch.Player.READY, toxicsaltinitiate)
+      toxicsaltembed.addEventListener(Twitch.Embed.VIDEO_READY, toxicsaltinitiate)
     
-      function initiate() {
-        toxicsaltplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
-        toxicsaltplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
-        toxicsaltplayer.removeEventListener(Twitch.Player.READY, initiate);
+      function toxicsaltinitiate() {
+        toxicsaltplayer.addEventListener(Twitch.Player.ONLINE, toxicsaltOnline);
+        toxicsaltplayer.addEventListener(Twitch.Player.OFFLINE, toxicsaltOffline);
+        toxicsaltplayer.removeEventListener(Twitch.Player.READY, toxicsaltinitiate);
       }
     
-      function handleOnline() {
+      function toxicsaltOnline() {
         document.getElementById("toxic__salt-embed").classList.remove('hide');
-        toxicsaltplayer.removeEventListener(Twitch.Player.ONLINE, handleOnline);
-        toxicsaltplayer.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        toxicsaltplayer.removeEventListener(Twitch.Player.ONLINE, toxicsaltOnline);
+        toxicsaltplayer.addEventListener(Twitch.Player.OFFLINE, toxicsaltOffline);
         toxicsaltplayer.setMuted(false);
       }
     
-      function handleOffline() {
+      function toxicsaltOffline() {
         document.getElementById("toxic__salt-embed").classList.add('hide');
-        toxicsaltplayer.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
-        toxicsaltplayer.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        toxicsaltplayer.removeEventListener(Twitch.Player.OFFLINE, toxicsaltOffline);
+        toxicsaltplayer.addEventListener(Twitch.Player.ONLINE, toxicsaltOnline);
         toxicsaltplayer.setMuted(true);
       }
 
