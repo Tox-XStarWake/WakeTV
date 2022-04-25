@@ -81,9 +81,109 @@
 
     </div>
 
+    <div class="twitch-embed"></div>
+        <div id="toxic__salt-embed"></div>
+      
+     <div class="twitch-player">
+        <div id="toxic__salt-player"></div>
 
+    <script>
+    var options = {
+        channel: "toxic__salt",
+        width: 340,
+        height: 400,
+        layout: "video-with-chat",
+        
+        theme: "dark",
+        parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+            ],
+      };
+      
+      var player = new Twitch.Player("toxic__salt-player", options);
+      var embed = new Twitch.Embed("toxic__salt-embed", options);
+      player.addEventListener(Twitch.Player.READY, initiate)
+      embed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
+    
+      function initiate() {
+        player.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        player.removeEventListener(Twitch.Player.READY, initiate);
+      }
+    
+      function handleOnline() {
+        document.getElementById("toxic__salt-embed").classList.remove('hide');
+        player.removeEventListener(Twitch.Player.ONLINE, handleOnline);
+        player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        player.setMuted(false);
+      }
+    
+      function handleOffline() {
+        document.getElementById("toxic__salt-embed").classList.add('hide');
+        player.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
+        player.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        player.setMuted(true);
+      }
 
+    </script>
 
+    </div>
+
+    <div class="twitch-embed"></div>
+        <div id="theelphyys-embed"></div>
+      
+     <div class="twitch-player">
+        <div id="theelphyys-player"></div>
+
+    <script>
+    var options = {
+        channel: "theelphyys",
+        width: 340,
+        height: 400,
+        layout: "video-with-chat",
+        
+        theme: "dark",
+        parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+            ],
+      };
+      
+      var player = new Twitch.Player("theelphyys-player", options);
+      var embed = new Twitch.Embed("theelphyys-embed", options);
+      player.addEventListener(Twitch.Player.READY, initiate)
+      embed.addEventListener(Twitch.Embed.VIDEO_READY, initiate)
+    
+      function initiate() {
+        player.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        player.removeEventListener(Twitch.Player.READY, initiate);
+      }
+    
+      function handleOnline() {
+        document.getElementById("theelphyys-embed").classList.remove('hide');
+        player.removeEventListener(Twitch.Player.ONLINE, handleOnline);
+        player.addEventListener(Twitch.Player.OFFLINE, handleOffline);
+        player.setMuted(false);
+      }
+    
+      function handleOffline() {
+        document.getElementById("theelphyys-embed").classList.add('hide');
+        player.removeEventListener(Twitch.Player.OFFLINE, handleOffline);
+        player.addEventListener(Twitch.Player.ONLINE, handleOnline);
+        player.setMuted(true);
+      }
+
+    </script>
+
+    </div>
 
 
 
