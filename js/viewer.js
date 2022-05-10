@@ -3,6 +3,7 @@ var options = {
     width: 500,
     height: 620,
   };
+  
   var player = new Twitch.Player("twitch", options);
 
   player.addEventListener(Twitch.Player.READY, initiate)
