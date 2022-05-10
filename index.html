@@ -1,84 +1,96 @@
-<html>
-  <meta http-equiv="refresh" content="1200" />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <head>
-    <title>WakeTV Stream Team</title>
-    <link
-      rel="shortcut icon"
-      href="https://cdn.glitch.global/3f4f1bc7-b447-46a4-ad7d-8fd9372b73c5/WakeTV_icon.ico?v=1647560803934"
-    />
+        <title>WakeTV Team Viewer</title>
+        <meta name="description" content="Viewer to help provide support for WakeTV Stream Team Members">
+        <meta name="author" content="Twitter: @Toxic__Salt">
+        <link rel="shortcut icon" href="img/WakeTV_icon.ico">
 
-    <style>
-      #twitch {
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 */
-        padding-top: 25px;
-        height: 0;
-      }
-      #twitch object,
-      #twitch iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-    </style>
-  </head>
+        <link rel="stylesheet" href="https://www.xstarwake.org/css/viewer.css">
 
-  <body>
-    <style>
-      .hide {
-        display: none;
-      }
-      .hidden {
-        display: none;
-      }
+        <!-- <script type="module" src="js/viewer.js"></script> -->
+        <script type="text/javascript" src="https://www.xstarwake.org/js/test.js"></script>
+        <script type="text/javascript" src="https://embed.twitch.tv/embed/v1.js"></script>
 
-      #container {
-        display: inline-block;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        background-image: url(https://cdn.glitch.global/3f4f1bc7-b447-46a4-ad7d-8fd9372b73c5/Patreon_BG.jpg?v=1647736562026);
-        background-repeat: repeat-y;
-        background-size: 100%;
-        background-position: center center;
+        <script>
+            if (location.protocol != "https:") {
+              location.href =
+                "https:" +
+                window.location.href.substring(window.location.protocol.length);
+            }
+        </script>
 
-        transition: all 0.3s ease;
+        <!-- <script src="http://www.xstarwake.org/js/ga-optout.js" type="text/javascript"></script> -->
 
-        border-bottom: 5px solid #852729;
-        box-shadow: 0px 0px 18px 5px #333;
-      }
-      .streamer {
-        float: left;
-        width: 480px;
+    </head>
 
-        background: #ce8888;
-        margin: 5px;
-      }
-    </style>
+    <body>
 
-    <script>
-      if (location.protocol != "https:") {
-        location.href =
-          "https:" +
-          window.location.href.substring(window.location.protocol.length);
-      }
-    </script>
+      <div class="xstarwake-embed"></div>
+      <div id="xstarwake-embed"></div>
+      
+      <div class="xstarwake-player"></div>
+      <div id="xstarwake-player"></div>
 
-    <script
-      src="https://embed.twitch.tv/embed/v1.js"
-      type="text/javascript"
-    ></script>
+      <script>
+        var xstarwakeoptions = {
+          channel: "xstarwake",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var xstarwakeplayer = new Twitch.Player("xstarwake-player", xstarwakeoptions);
+        var xstarwakeembed = new Twitch.Embed("xstarwake-embed", xstarwakeoptions);
+        xstarwakeplayer.addEventListener(Twitch.Player.READY, xstarwakeinitiate)
+        xstarwakeembed.addEventListener(Twitch.Embed.VIDEO_READY, xstarwakeinitiate)
+    
+        function xstarwakeinitiate() {
+          xstarwakeplayer.addEventListener(Twitch.Player.ONLINE, xstarwakeOnline);
+          xstarwakeplayer.addEventListener(Twitch.Player.OFFLINE, xstarwakeOffline);
+          xstarwakeplayer.removeEventListener(Twitch.Player.READY, xstarwakeinitiate);
+        }
+    
+        function xstarwakeOnline() {
+          document.getElementById("xstarwake-embed").classList.remove('hide');
+          document.getElementByClass("xstarwake-embed").classList.add('hide');
+          xstarwakeplayer.removeEventListener(Twitch.Player.ONLINE, xstarwakeOnline);
+          xstarwakeplayer.addEventListener(Twitch.Player.OFFLINE, xstarwakeOffline);
+          xstarwakeplayer.setMuted(false);
+        }
+    
+        function xstarwakeOffline() {
+          document.getElementById("xstarwake-embed").classList.add('hide');
+          document.getElementByClass("xstarwake-embed").classList.add('hide');
+          xstarwakeplayer.removeEventListener(Twitch.Player.OFFLINE, xstarwakeOffline);
+          xstarwakeplayer.addEventListener(Twitch.Player.ONLINE, xstarwakeOnline);
+          xstarwakeplayer.setMuted(true);
+        }
 
-    <div class="streamer">
-      <div id="XStarWake-twitch-embed"></div>
-      <script defer async>
-        var XStarWakeoptions = {
-          channel: "XStarWake",
-          width: 940,
-          height: 300,
+      </script>
+
+      <div class="toxic__salt-embed"></div>
+      <div id="toxic__salt-embed"></div>
+      
+      <div class="toxic__salt-player"></div>
+      <div id="toxic__salt-player"></div>
+
+      <script>
+        var toxic__saltoptions = {
+          channel: "toxic__salt",
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -89,68 +101,47 @@
             "localhost",
           ],
         };
-        var XStarWakeStream = new Twitch.Embed(
-          "XStarWake-twitch-embed",
-          XStarWakeoptions
-        );
-        XStarWakeStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          XStarWakeinitiate
-        );
-        function XStarWakeinitiate() {
-          XStarWakeStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            XStarWakehandleOnline
-          );
-          XStarWakeStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            XStarWakehandleOffline
-          );
-          XStarWakeStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            XStarWakeinitiate
-          );
+      
+        var toxic__saltplayer = new Twitch.Player("toxic__salt-player", toxic__saltoptions);
+        var toxic__saltembed = new Twitch.Embed("toxic__salt-embed", toxic__saltoptions);
+        toxic__saltplayer.addEventListener(Twitch.Player.READY, toxic__saltinitiate)
+        toxic__saltembed.addEventListener(Twitch.Embed.VIDEO_READY, toxic__saltinitiate)
+    
+        function toxic__saltinitiate() {
+          toxic__saltplayer.addEventListener(Twitch.Player.ONLINE, toxic__saltOnline);
+          toxic__saltplayer.addEventListener(Twitch.Player.OFFLINE, toxic__saltOffline);
+          toxic__saltplayer.removeEventListener(Twitch.Player.READY, toxic__saltinitiate);
         }
-        function XStarWakehandleOnline() {
-          document
-            .getElementById("XStarWake-twitch-embed")
-            .classList.remove("hidden");
-          XStarWakeStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            XStarWakehandleOnline
-          );
-          XStarWakeStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            XStarWakehandleOffline
-          );
-          XStarWakeStream.setMuted(false);
+    
+        function toxic__saltOnline() {
+          document.getElementById("toxic__salt-embed").classList.remove('hide');
+          document.getElementByClass("toxic__salt-embed").classList.add('hide');
+          toxic__saltplayer.removeEventListener(Twitch.Player.ONLINE, toxic__saltOnline);
+          toxic__saltplayer.addEventListener(Twitch.Player.OFFLINE, toxic__saltOffline);
+          toxic__saltplayer.setMuted(false);
         }
-        function XStarWakehandleOffline() {
-          document
-            .getElementById("XStarWake-twitch-embed")
-            .classList.add("hidden");
-          document
-            .getElementById("XStarWake-twitch-embed")
-            .classId.add("hidden");
-          XStarWakeStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            XStarWakehandleOffline
-          );
-          XStarWakeStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            XStarWakehandleOnline
-          );
-          XStarWakeStream.setMuted(true);
+    
+        function toxic__saltOffline() {
+          document.getElementById("toxic__salt-embed").classList.add('hide');
+          document.getElementByClass("toxic__salt-embed").classList.add('hide');
+          toxic__saltplayer.removeEventListener(Twitch.Player.OFFLINE, toxic__saltOffline);
+          toxic__saltplayer.addEventListener(Twitch.Player.ONLINE, toxic__saltOnline);
+          toxic__saltplayer.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="Toxic__Salt-twitch-embed"></div>
-      <script defer async>
-        var Toxic__Saltoptions = {
-          channel: "Toxic__Salt",
-          width: 940,
-          height: 300,
+
+      <div class="spacemages-embed"></div>
+      <div id="spacemages-embed"></div>
+      
+      <div class="spacemages-player"></div>
+      <div id="spacemages-player"></div>
+
+      <script>
+        var spacemagesoptions = {
+          channel: "spacemages",
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -161,65 +152,47 @@
             "localhost",
           ],
         };
-        var Toxic__SaltStream = new Twitch.Embed(
-          "Toxic__Salt-twitch-embed",
-          Toxic__Saltoptions
-        );
-        Toxic__SaltStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          Toxic__Saltinitiate
-        );
-        function Toxic__Saltinitiate() {
-          Toxic__SaltStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Toxic__SalthandleOnline
-          );
-          Toxic__SaltStream.addEventListener(
-            Twitch.Embed.OFFLINE,
-            Toxic__SalthandleOffline
-          );
-          Toxic__SaltStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Toxic__Saltinitiate
-          );
+      
+        var spacemagesplayer = new Twitch.Player("spacemages-player", spacemagesoptions);
+        var spacemagesembed = new Twitch.Embed("spacemages-embed", spacemagesoptions);
+        spacemagesplayer.addEventListener(Twitch.Player.READY, spacemagesinitiate)
+        spacemagesembed.addEventListener(Twitch.Embed.VIDEO_READY, spacemagesinitiate)
+    
+        function spacemagesinitiate() {
+          spacemagesplayer.addEventListener(Twitch.Player.ONLINE, spacemagesOnline);
+          spacemagesplayer.addEventListener(Twitch.Player.OFFLINE, spacemagesOffline);
+          spacemagesplayer.removeEventListener(Twitch.Player.READY, spacemagesinitiate);
         }
-        function Toxic__SalthandleOnline() {
-          document
-            .getElementById("Toxic__Salt-twitch-embed")
-            .classList.remove("hidden");
-          Toxic__SaltStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Toxic__SalthandleOnline
-          );
-          Toxic__SaltStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Toxic__SalthandleOffline
-          );
-          Toxic__SaltStream.setMuted(false);
+    
+        function spacemagesOnline() {
+          document.getElementById("spacemages-embed").classList.remove('hide');
+          document.getElementByClass("spacemages-embed").classList.add('hide');
+          spacemagesplayer.removeEventListener(Twitch.Player.ONLINE, spacemagesOnline);
+          spacemagesplayer.addEventListener(Twitch.Player.OFFLINE, spacemagesOffline);
+          spacemagesplayer.setMuted(false);
         }
-        function Toxic__SalthandleOffline() {
-          document
-            .getElementById("Toxic__Salt-twitch-embed")
-            .classList.add("hidden");
-          Toxic__SaltStream.removeEventListener(
-            Twitch.Embed.OFFLINE,
-            Toxic__SalthandleOffline
-          );
-          Toxic__SaltStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Toxic__SalthandleOnline
-          );
-          Toxic__SaltStream.setMuted(true);
+    
+        function spacemagesOffline() {
+          document.getElementById("spacemages-embed").classList.add('hide');
+          document.getElementByClass("spacemages-embed").classList.add('hide');
+          spacemagesplayer.removeEventListener(Twitch.Player.OFFLINE, spacemagesOffline);
+          spacemagesplayer.addEventListener(Twitch.Player.ONLINE, spacemagesOnline);
+          spacemagesplayer.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="SpaceMages-twitch-embed"></div>
-      <script defer async>
-        var SpaceMagesoptions = {
-          channel: "SpaceMages",
-          width: 940,
-          height: 300,
+
+      <div class="chefduckie-embed"></div>
+      <div id="chefduckie-embed"></div>
+      
+      <div class="chefduckie-player"></div>
+      <div id="chefduckie-player"></div>
+
+      <script>
+        var chefduckieoptions = {
+          channel: "chefduckie",
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -230,65 +203,254 @@
             "localhost",
           ],
         };
-        var SpaceMagesStream = new Twitch.Embed(
-          "SpaceMages-twitch-embed",
-          SpaceMagesoptions
-        );
-        SpaceMagesStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          SpaceMagesinitiate
-        );
-        function SpaceMagesinitiate() {
-          SpaceMagesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SpaceMageshandleOnline
-          );
-          SpaceMagesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SpaceMageshandleOffline
-          );
-          SpaceMagesStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SpaceMagesinitiate
-          );
+      
+        var chefduckieplayer = new Twitch.Player("chefduckie-player", chefduckieoptions);
+        var chefduckieembed = new Twitch.Embed("chefduckie-embed", chefduckieoptions);
+        chefduckieplayer.addEventListener(Twitch.Player.READY, chefduckieinitiate)
+        chefduckieembed.addEventListener(Twitch.Embed.VIDEO_READY, chefduckieinitiate)
+    
+        function chefduckieinitiate() {
+          chefduckieplayer.addEventListener(Twitch.Player.ONLINE, chefduckieOnline);
+          chefduckieplayer.addEventListener(Twitch.Player.OFFLINE, chefduckieOffline);
+          chefduckieplayer.removeEventListener(Twitch.Player.READY, chefduckieinitiate);
         }
-        function SpaceMageshandleOnline() {
-          document
-            .getElementById("SpaceMages-twitch-embed")
-            .classList.remove("hidden");
-          SpaceMagesStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SpaceMageshandleOnline
-          );
-          SpaceMagesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SpaceMageshandleOffline
-          );
-          SpaceMagesStream.setMuted(false);
+    
+        function chefduckieOnline() {
+          document.getElementById("chefduckie-embed").classList.remove('hide');
+          document.getElementByClass("chefduckie-embed").classList.add('hide');
+          chefduckieplayer.removeEventListener(Twitch.Player.ONLINE, chefduckieOnline);
+          chefduckieplayer.addEventListener(Twitch.Player.OFFLINE, chefduckieOffline);
+          chefduckieplayer.setMuted(false);
         }
-        function SpaceMageshandleOffline() {
-          document
-            .getElementById("SpaceMages-twitch-embed")
-            .classList.add("hidden");
-          SpaceMagesStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SpaceMageshandleOffline
-          );
-          SpaceMagesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SpaceMageshandleOnline
-          );
-          SpaceMagesStream.setMuted(true);
+    
+        function chefduckieOffline() {
+          document.getElementById("chefduckie-embed").classList.add('hide');
+          document.getElementByClass("chefduckie-embed").classList.add('hide');
+          chefduckieplayer.removeEventListener(Twitch.Player.OFFLINE, chefduckieOffline);
+          chefduckieplayer.addEventListener(Twitch.Player.ONLINE, chefduckieOnline);
+          chefduckieplayer.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="theelphyys-twitch-embed"></div>
-      <script defer async>
-        var theelphyysoptions = {
-          channel: "theelphyys",
-          width: 940,
-          height: 300,
+
+<div class="deadinthescene-embed"></div>
+<div id="deadinthescene-embed"></div>
+
+<div class="deadinthescene-player"></div>
+<div id="deadinthescene-player"></div>
+
+<script>
+  var deadinthesceneoptions = {
+    channel: "deadinthescene",
+    width: 340,
+    height: 400,
+    layout: "video-with-chat",
+    theme: "dark",
+    parent: [
+      "glitch.com",
+      "xstarwake.org",
+      "www.xstarwake.org",
+      "www-xstarwake-org.glitch.me",
+      "localhost",
+    ],
+  };
+
+  var deadinthesceneplayer = new Twitch.Player("deadinthescene-player", deadinthesceneoptions);
+  var deadinthesceneembed = new Twitch.Embed("deadinthescene-embed", deadinthesceneoptions);
+  deadinthesceneplayer.addEventListener(Twitch.Player.READY, deadinthesceneinitiate)
+  deadinthesceneembed.addEventListener(Twitch.Embed.VIDEO_READY, deadinthesceneinitiate)
+
+  function deadinthesceneinitiate() {
+    deadinthesceneplayer.addEventListener(Twitch.Player.ONLINE, deadinthesceneOnline);
+    deadinthesceneplayer.addEventListener(Twitch.Player.OFFLINE, deadinthesceneOffline);
+    deadinthesceneplayer.removeEventListener(Twitch.Player.READY, deadinthesceneinitiate);
+  }
+
+  function deadinthesceneOnline() {
+    document.getElementById("deadinthescene-embed").classList.remove('hide');
+    document.getElementByClass("deadinthescene-embed").classList.add('hide');
+    deadinthesceneplayer.removeEventListener(Twitch.Player.ONLINE, deadinthesceneOnline);
+    deadinthesceneplayer.addEventListener(Twitch.Player.OFFLINE, deadinthesceneOffline);
+    deadinthesceneplayer.setMuted(false);
+  }
+
+  function deadinthesceneOffline() {
+    document.getElementById("deadinthescene-embed").classList.add('hide');
+    document.getElementByClass("deadinthescene-embed").classList.add('hide');
+    deadinthesceneplayer.removeEventListener(Twitch.Player.OFFLINE, deadinthesceneOffline);
+    deadinthesceneplayer.addEventListener(Twitch.Player.ONLINE, deadinthesceneOnline);
+    deadinthesceneplayer.setMuted(true);
+  }
+
+</script>
+
+
+<div class="doubleknees-embed"></div>
+<div id="doubleknees-embed"></div>
+
+<div class="doubleknees-player"></div>
+<div id="doubleknees-player"></div>
+
+<script>
+  var doublekneesoptions = {
+    channel: "doubleknees",
+    width: 340,
+    height: 400,
+    layout: "video-with-chat",
+    theme: "dark",
+    parent: [
+      "glitch.com",
+      "xstarwake.org",
+      "www.xstarwake.org",
+      "www-xstarwake-org.glitch.me",
+      "localhost",
+    ],
+  };
+
+  var doublekneesplayer = new Twitch.Player("doubleknees-player", doublekneesoptions);
+  var doublekneesembed = new Twitch.Embed("doubleknees-embed", doublekneesoptions);
+  doublekneesplayer.addEventListener(Twitch.Player.READY, doublekneesinitiate)
+  doublekneesembed.addEventListener(Twitch.Embed.VIDEO_READY, doublekneesinitiate)
+
+  function doublekneesinitiate() {
+    doublekneesplayer.addEventListener(Twitch.Player.ONLINE, doublekneesOnline);
+    doublekneesplayer.addEventListener(Twitch.Player.OFFLINE, doublekneesOffline);
+    doublekneesplayer.removeEventListener(Twitch.Player.READY, doublekneesinitiate);
+  }
+
+  function doublekneesOnline() {
+    document.getElementById("doubleknees-embed").classList.remove('hide');
+    document.getElementByClass("doubleknees-embed").classList.add('hide');
+    doublekneesplayer.removeEventListener(Twitch.Player.ONLINE, doublekneesOnline);
+    doublekneesplayer.addEventListener(Twitch.Player.OFFLINE, doublekneesOffline);
+    doublekneesplayer.setMuted(false);
+  }
+
+  function doublekneesOffline() {
+    document.getElementById("doubleknees-embed").classList.add('hide');
+    document.getElementByClass("doubleknees-embed").classList.add('hide');
+    doublekneesplayer.removeEventListener(Twitch.Player.OFFLINE, doublekneesOffline);
+    doublekneesplayer.addEventListener(Twitch.Player.ONLINE, doublekneesOnline);
+    doublekneesplayer.setMuted(true);
+  }
+
+</script>
+
+
+<div class="fearsumbeard-embed"></div>
+<div id="fearsumbeard-embed"></div>
+
+<div class="fearsumbeard-player"></div>
+<div id="fearsumbeard-player"></div>
+
+<script>
+  var fearsumbeardoptions = {
+    channel: "fearsumbeard",
+    width: 340,
+    height: 400,
+    layout: "video-with-chat",
+    theme: "dark",
+    parent: [
+      "glitch.com",
+      "xstarwake.org",
+      "www.xstarwake.org",
+      "www-xstarwake-org.glitch.me",
+      "localhost",
+    ],
+  };
+
+  var fearsumbeardplayer = new Twitch.Player("fearsumbeard-player", fearsumbeardoptions);
+  var fearsumbeardembed = new Twitch.Embed("fearsumbeard-embed", fearsumbeardoptions);
+  fearsumbeardplayer.addEventListener(Twitch.Player.READY, fearsumbeardinitiate)
+  fearsumbeardembed.addEventListener(Twitch.Embed.VIDEO_READY, fearsumbeardinitiate)
+
+  function fearsumbeardinitiate() {
+    fearsumbeardplayer.addEventListener(Twitch.Player.ONLINE, fearsumbeardOnline);
+    fearsumbeardplayer.addEventListener(Twitch.Player.OFFLINE, fearsumbeardOffline);
+    fearsumbeardplayer.removeEventListener(Twitch.Player.READY, fearsumbeardinitiate);
+  }
+
+  function fearsumbeardOnline() {
+    document.getElementById("fearsumbeard-embed").classList.remove('hide');
+    document.getElementByClass("fearsumbeard-embed").classList.add('hide');
+    fearsumbeardplayer.removeEventListener(Twitch.Player.ONLINE, fearsumbeardOnline);
+    fearsumbeardplayer.addEventListener(Twitch.Player.OFFLINE, fearsumbeardOffline);
+    fearsumbeardplayer.setMuted(false);
+  }
+
+  function fearsumbeardOffline() {
+    document.getElementById("fearsumbeard-embed").classList.add('hide');
+    document.getElementByClass("fearsumbeard-embed").classList.add('hide');
+    fearsumbeardplayer.removeEventListener(Twitch.Player.OFFLINE, fearsumbeardOffline);
+    fearsumbeardplayer.addEventListener(Twitch.Player.ONLINE, fearsumbeardOnline);
+    fearsumbeardplayer.setMuted(true);
+  }
+
+</script>
+
+
+<div class="kelling101-embed"></div>
+<div id="kelling101-embed"></div>
+
+<div class="kelling101-player"></div>
+<div id="kelling101-player"></div>
+
+<script>
+  var kelling101options = {
+    channel: "kelling101",
+    width: 340,
+    height: 400,
+    layout: "video-with-chat",
+    theme: "dark",
+    parent: [
+      "glitch.com",
+      "xstarwake.org",
+      "www.xstarwake.org",
+      "www-xstarwake-org.glitch.me",
+      "localhost",
+    ],
+  };
+
+  var kelling101player = new Twitch.Player("kelling101-player", kelling101options);
+  var kelling101embed = new Twitch.Embed("kelling101-embed", kelling101options);
+  kelling101player.addEventListener(Twitch.Player.READY, kelling101initiate)
+  kelling101embed.addEventListener(Twitch.Embed.VIDEO_READY, kelling101initiate)
+
+  function kelling101initiate() {
+    kelling101player.addEventListener(Twitch.Player.ONLINE, kelling101Online);
+    kelling101player.addEventListener(Twitch.Player.OFFLINE, kelling101Offline);
+    kelling101player.removeEventListener(Twitch.Player.READY, kelling101initiate);
+  }
+
+  function kelling101Online() {
+    document.getElementById("kelling101-embed").classList.remove('hide');
+    document.getElementByClass("kelling101-embed").classList.add('hide');
+    kelling101player.removeEventListener(Twitch.Player.ONLINE, kelling101Online);
+    kelling101player.addEventListener(Twitch.Player.OFFLINE, kelling101Offline);
+    kelling101player.setMuted(false);
+  }
+
+  function kelling101Offline() {
+    document.getElementById("kelling101-embed").classList.add('hide');
+    document.getElementByClass("kelling101-embed").classList.add('hide');
+    kelling101player.removeEventListener(Twitch.Player.OFFLINE, kelling101Offline);
+    kelling101player.addEventListener(Twitch.Player.ONLINE, kelling101Online);
+    kelling101player.setMuted(true);
+  }
+
+</script>
+
+<div class="lkwilli-embed"></div>
+      <div id="lkwilli-embed"></div>
+      
+      <div class="lkwilli-player"></div>
+      <div id="lkwilli-player"></div>
+
+      <script>
+        var lkwillioptions = {
+          channel: "lkwilli",
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -299,65 +461,100 @@
             "localhost",
           ],
         };
-        var theelphyysStream = new Twitch.Embed(
-          "theelphyys-twitch-embed",
-          theelphyysoptions
-        );
-        theelphyysStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          theelphyysinitiate
-        );
-        function theelphyysinitiate() {
-          theelphyysStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            theelphyyshandleOnline
-          );
-          theelphyysStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            theelphyyshandleOffline
-          );
-          theelphyysStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            theelphyysinitiate
-          );
+      
+        var lkwilliplayer = new Twitch.Player("lkwilli-player", lkwillioptions);
+        var lkwilliembed = new Twitch.Embed("lkwilli-embed", lkwillioptions);
+        lkwilliplayer.addEventListener(Twitch.Player.READY, lkwilliinitiate)
+        lkwilliembed.addEventListener(Twitch.Embed.VIDEO_READY, lkwilliinitiate)
+    
+        function lkwilliinitiate() {
+          lkwilliplayer.addEventListener(Twitch.Player.ONLINE, lkwilliOnline);
+          lkwilliplayer.addEventListener(Twitch.Player.OFFLINE, lkwilliOffline);
+          lkwilliplayer.removeEventListener(Twitch.Player.READY, lkwilliinitiate);
         }
-        function theelphyyshandleOnline() {
-          document
-            .getElementById("theelphyys-twitch-embed")
-            .classList.remove("hidden");
-          theelphyysStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            theelphyyshandleOnline
-          );
-          theelphyysStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            theelphyyshandleOffline
-          );
-          theelphyysStream.setMuted(false);
+    
+        function lkwilliOnline() {
+          document.getElementById("lkwilli-embed").classList.remove('hide');
+          document.getElementByClass("lkwilli-embed").classList.add('hide');
+          lkwilliplayer.removeEventListener(Twitch.Player.ONLINE, lkwilliOnline);
+          lkwilliplayer.addEventListener(Twitch.Player.OFFLINE, lkwilliOffline);
+          lkwilliplayer.setMuted(false);
         }
-        function theelphyyshandleOffline() {
-          document
-            .getElementById("theelphyys-twitch-embed")
-            .classList.add("hidden");
-          theelphyysStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            theelphyyshandleOffline
-          );
-          theelphyysStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            theelphyyshandleOnline
-          );
-          theelphyysStream.setMuted(true);
+    
+        function lkwilliOffline() {
+          document.getElementById("lkwilli-embed").classList.add('hide');
+          document.getElementByClass("lkwilli-embed").classList.add('hide');
+          lkwilliplayer.removeEventListener(Twitch.Player.OFFLINE, lkwilliOffline);
+          lkwilliplayer.addEventListener(Twitch.Player.ONLINE, lkwilliOnline);
+          lkwilliplayer.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="ChefDuckie-twitch-embed"></div>
-      <script defer async>
-        var ChefDuckieoptions = {
-          channel: "ChefDuckie",
-          width: 940,
-          height: 300,
+
+<div class="mariannewray-embed"></div>
+<div id="mariannewray-embed"></div>
+
+<div class="mariannewray-player"></div>
+<div id="mariannewray-player"></div>
+
+<script>
+  var mariannewrayoptions = {
+    channel: "mariannewray",
+    width: 340,
+    height: 400,
+    layout: "video-with-chat",
+    theme: "dark",
+    parent: [
+      "glitch.com",
+      "xstarwake.org",
+      "www.xstarwake.org",
+      "www-xstarwake-org.glitch.me",
+      "localhost",
+    ],
+  };
+
+  var mariannewrayplayer = new Twitch.Player("mariannewray-player", mariannewrayoptions);
+  var mariannewrayembed = new Twitch.Embed("mariannewray-embed", mariannewrayoptions);
+  mariannewrayplayer.addEventListener(Twitch.Player.READY, mariannewrayinitiate)
+  mariannewrayembed.addEventListener(Twitch.Embed.VIDEO_READY, mariannewrayinitiate)
+
+  function mariannewrayinitiate() {
+    mariannewrayplayer.addEventListener(Twitch.Player.ONLINE, mariannewrayOnline);
+    mariannewrayplayer.addEventListener(Twitch.Player.OFFLINE, mariannewrayOffline);
+    mariannewrayplayer.removeEventListener(Twitch.Player.READY, mariannewrayinitiate);
+  }
+
+  function mariannewrayOnline() {
+    document.getElementById("mariannewray-embed").classList.remove('hide');
+    document.getElementByClass("mariannewray-embed").classList.add('hide');
+    mariannewrayplayer.removeEventListener(Twitch.Player.ONLINE, mariannewrayOnline);
+    mariannewrayplayer.addEventListener(Twitch.Player.OFFLINE, mariannewrayOffline);
+    mariannewrayplayer.setMuted(false);
+  }
+
+  function mariannewrayOffline() {
+    document.getElementById("mariannewray-embed").classList.add('hide');
+    document.getElementByClass("mariannewray-embed").classList.add('hide');
+    mariannewrayplayer.removeEventListener(Twitch.Player.OFFLINE, mariannewrayOffline);
+    mariannewrayplayer.addEventListener(Twitch.Player.ONLINE, mariannewrayOnline);
+    mariannewrayplayer.setMuted(true);
+  }
+
+</script>
+
+
+
+<div class="mini_devil69-embed"></div>
+      <div id="mini_devil69-embed"></div>
+      
+      <div class="mini_devil69-player"></div>
+      <div id="mini_devil69-player"></div>
+
+      <script>
+        var mini_devil69options = {
+          channel: "mini_devil69",
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -368,617 +565,50 @@
             "localhost",
           ],
         };
-        var ChefDuckieStream = new Twitch.Embed(
-          "ChefDuckie-twitch-embed",
-          ChefDuckieoptions
-        );
-        ChefDuckieStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          ChefDuckieinitiate
-        );
-        function ChefDuckieinitiate() {
-          ChefDuckieStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            ChefDuckiehandleOnline
-          );
-          ChefDuckieStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            ChefDuckiehandleOffline
-          );
-          ChefDuckieStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            ChefDuckieinitiate
-          );
+      
+        var mini_devil69player = new Twitch.Player("mini_devil69-player", mini_devil69options);
+        var mini_devil69embed = new Twitch.Embed("mini_devil69-embed", mini_devil69options);
+        mini_devil69player.addEventListener(Twitch.Player.READY, mini_devil69initiate)
+        mini_devil69embed.addEventListener(Twitch.Embed.VIDEO_READY, mini_devil69initiate)
+    
+        function mini_devil69initiate() {
+          mini_devil69player.addEventListener(Twitch.Player.ONLINE, mini_devil69Online);
+          mini_devil69player.addEventListener(Twitch.Player.OFFLINE, mini_devil69Offline);
+          mini_devil69player.removeEventListener(Twitch.Player.READY, mini_devil69initiate);
         }
-        function ChefDuckiehandleOnline() {
-          document
-            .getElementById("ChefDuckie-twitch-embed")
-            .classList.remove("hidden");
-          ChefDuckieStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            ChefDuckiehandleOnline
-          );
-          ChefDuckieStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            ChefDuckiehandleOffline
-          );
-          ChefDuckieStream.setMuted(false);
+    
+        function mini_devil69Online() {
+          document.getElementById("mini_devil69-embed").classList.remove('hide');
+          document.getElementByClass("mini_devil69-embed").classList.add('hide');
+          mini_devil69player.removeEventListener(Twitch.Player.ONLINE, mini_devil69Online);
+          mini_devil69player.addEventListener(Twitch.Player.OFFLINE, mini_devil69Offline);
+          mini_devil69player.setMuted(false);
         }
-        function ChefDuckiehandleOffline() {
-          document
-            .getElementById("ChefDuckie-twitch-embed")
-            .classList.add("hidden");
-          ChefDuckieStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            ChefDuckiehandleOffline
-          );
-          ChefDuckieStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            ChefDuckiehandleOnline
-          );
-          ChefDuckieStream.setMuted(true);
+    
+        function mini_devil69Offline() {
+          document.getElementById("mini_devil69-embed").classList.add('hide');
+          document.getElementByClass("mini_devil69-embed").classList.add('hide');
+          mini_devil69player.removeEventListener(Twitch.Player.OFFLINE, mini_devil69Offline);
+          mini_devil69player.addEventListener(Twitch.Player.ONLINE, mini_devil69Online);
+          mini_devil69player.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="Dany3lll3-twitch-embed"></div>
-      <script defer async>
-        var Dany3lll3options = {
-          channel: "Dany3lll3",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var Dany3lll3Stream = new Twitch.Embed(
-          "Dany3lll3-twitch-embed",
-          Dany3lll3options
-        );
-        Dany3lll3Stream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          Dany3lll3initiate
-        );
-        function Dany3lll3initiate() {
-          Dany3lll3Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Dany3lll3handleOnline
-          );
-          Dany3lll3Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Dany3lll3handleOffline
-          );
-          Dany3lll3Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Dany3lll3initiate
-          );
-        }
-        function Dany3lll3handleOnline() {
-          document
-            .getElementById("Dany3lll3-twitch-embed")
-            .classList.remove("hidden");
-          Dany3lll3Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Dany3lll3handleOnline
-          );
-          Dany3lll3Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Dany3lll3handleOffline
-          );
-          Dany3lll3Stream.setMuted(false);
-        }
-        function Dany3lll3handleOffline() {
-          document
-            .getElementById("Dany3lll3-twitch-embed")
-            .classList.add("hidden");
-          Dany3lll3Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Dany3lll3handleOffline
-          );
-          Dany3lll3Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Dany3lll3handleOnline
-          );
-          Dany3lll3Stream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="deadinthescene-twitch-embed"></div>
-      <script defer async>
-        var deadinthesceneoptions = {
-          channel: "deadinthescene",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var deadinthesceneStream = new Twitch.Embed(
-          "deadinthescene-twitch-embed",
-          deadinthesceneoptions
-        );
-        deadinthesceneStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          deadinthesceneinitiate
-        );
-        function deadinthesceneinitiate() {
-          deadinthesceneStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            deadinthescenehandleOnline
-          );
-          deadinthesceneStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            deadinthescenehandleOffline
-          );
-          deadinthesceneStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            deadinthesceneinitiate
-          );
-        }
-        function deadinthescenehandleOnline() {
-          document
-            .getElementById("deadinthescene-twitch-embed")
-            .classList.remove("hidden");
-          deadinthesceneStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            deadinthescenehandleOnline
-          );
-          deadinthesceneStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            deadinthescenehandleOffline
-          );
-          deadinthesceneStream.setMuted(false);
-        }
-        function deadinthescenehandleOffline() {
-          document
-            .getElementById("deadinthescene-twitch-embed")
-            .classList.add("hidden");
-          deadinthesceneStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            deadinthescenehandleOffline
-          );
-          deadinthesceneStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            deadinthescenehandleOnline
-          );
-          deadinthesceneStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="DoubleKnees-twitch-embed"></div>
-      <script defer async>
-        var DoubleKneesoptions = {
-          channel: "DoubleKnees",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var DoubleKneesStream = new Twitch.Embed(
-          "DoubleKnees-twitch-embed",
-          DoubleKneesoptions
-        );
-        DoubleKneesStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          DoubleKneesinitiate
-        );
-        function DoubleKneesinitiate() {
-          DoubleKneesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DoubleKneeshandleOnline
-          );
-          DoubleKneesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DoubleKneeshandleOffline
-          );
-          DoubleKneesStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DoubleKneesinitiate
-          );
-        }
-        function DoubleKneeshandleOnline() {
-          document
-            .getElementById("DoubleKnees-twitch-embed")
-            .classList.remove("hidden");
-          DoubleKneesStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DoubleKneeshandleOnline
-          );
-          DoubleKneesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DoubleKneeshandleOffline
-          );
-          DoubleKneesStream.setMuted(false);
-        }
-        function DoubleKneeshandleOffline() {
-          document
-            .getElementById("DoubleKnees-twitch-embed")
-            .classList.add("hidden");
-          DoubleKneesStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DoubleKneeshandleOffline
-          );
-          DoubleKneesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DoubleKneeshandleOnline
-          );
-          DoubleKneesStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="FearsumBeard-twitch-embed"></div>
-      <script defer async>
-        var FearsumBeardoptions = {
-          channel: "FearsumBeard",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var FearsumBeardStream = new Twitch.Embed(
-          "FearsumBeard-twitch-embed",
-          FearsumBeardoptions
-        );
-        FearsumBeardStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          FearsumBeardinitiate
-        );
-        function FearsumBeardinitiate() {
-          FearsumBeardStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            FearsumBeardhandleOnline
-          );
-          FearsumBeardStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            FearsumBeardhandleOffline
-          );
-          FearsumBeardStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            FearsumBeardinitiate
-          );
-        }
-        function FearsumBeardhandleOnline() {
-          document
-            .getElementById("FearsumBeard-twitch-embed")
-            .classList.remove("hidden");
-          FearsumBeardStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            FearsumBeardhandleOnline
-          );
-          FearsumBeardStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            FearsumBeardhandleOffline
-          );
-          FearsumBeardStream.setMuted(false);
-        }
-        function FearsumBeardhandleOffline() {
-          document
-            .getElementById("FearsumBeard-twitch-embed")
-            .classList.add("hidden");
-          FearsumBeardStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            FearsumBeardhandleOffline
-          );
-          FearsumBeardStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            FearsumBeardhandleOnline
-          );
-          FearsumBeardStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="Kelling101-twitch-embed"></div>
-      <script defer async>
-        var Kelling101options = {
-          channel: "Kelling101",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var Kelling101Stream = new Twitch.Embed(
-          "Kelling101-twitch-embed",
-          Kelling101options
-        );
-        Kelling101Stream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          Kelling101initiate
-        );
-        function Kelling101initiate() {
-          Kelling101Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Kelling101handleOnline
-          );
-          Kelling101Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Kelling101handleOffline
-          );
-          Kelling101Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Kelling101initiate
-          );
-        }
-        function Kelling101handleOnline() {
-          document
-            .getElementById("Kelling101-twitch-embed")
-            .classList.remove("hidden");
-          Kelling101Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Kelling101handleOnline
-          );
-          Kelling101Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Kelling101handleOffline
-          );
-          Kelling101Stream.setMuted(false);
-        }
-        function Kelling101handleOffline() {
-          document
-            .getElementById("Kelling101-twitch-embed")
-            .classList.add("hidden");
-          Kelling101Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Kelling101handleOffline
-          );
-          Kelling101Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Kelling101handleOnline
-          );
-          Kelling101Stream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="LKwilli-twitch-embed"></div>
-      <script defer async>
-        var LKwillioptions = {
-          channel: "LKwilli",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var LKwilliStream = new Twitch.Embed(
-          "LKwilli-twitch-embed",
-          LKwillioptions
-        );
-        LKwilliStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          LKwilliinitiate
-        );
-        function LKwilliinitiate() {
-          LKwilliStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LKwillihandleOnline
-          );
-          LKwilliStream.addEventListener(
-            Twitch.Embed.OFFLINE,
-            LKwillihandleOffline
-          );
-          LKwilliStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LKwilliinitiate
-          );
-        }
-        function LKwillihandleOnline() {
-          document
-            .getElementById("LKwilli-twitch-embed")
-            .classList.remove("hidden");
-          LKwilliStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LKwillihandleOnline
-          );
-          LKwilliStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LKwillihandleOffline
-          );
-          LKwilliStream.setMuted(false);
-        }
-        function LKwillihandleOffline() {
-          document
-            .getElementById("LKwilli-twitch-embed")
-            .classList.add("hidden");
-          LKwilliStream.removeEventListener(
-            Twitch.Embed.OFFLINE,
-            LKwillihandleOffline
-          );
-          LKwilliStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LKwillihandleOnline
-          );
-          LKwilliStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="MarianneWray-twitch-embed"></div>
-      <script defer async>
-        var MarianneWrayoptions = {
-          channel: "MarianneWray",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var MarianneWrayStream = new Twitch.Embed(
-          "MarianneWray-twitch-embed",
-          MarianneWrayoptions
-        );
-        MarianneWrayStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          MarianneWrayinitiate
-        );
-        function MarianneWrayinitiate() {
-          MarianneWrayStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MarianneWrayhandleOnline
-          );
-          MarianneWrayStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MarianneWrayhandleOffline
-          );
-          MarianneWrayStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MarianneWrayinitiate
-          );
-        }
-        function MarianneWrayhandleOnline() {
-          document
-            .getElementById("MarianneWray-twitch-embed")
-            .classList.remove("hidden");
-          MarianneWrayStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MarianneWrayhandleOnline
-          );
-          MarianneWrayStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MarianneWrayhandleOffline
-          );
-          MarianneWrayStream.setMuted(false);
-        }
-        function MarianneWrayhandleOffline() {
-          document
-            .getElementById("MarianneWray-twitch-embed")
-            .classList.add("hidden");
-          MarianneWrayStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MarianneWrayhandleOffline
-          );
-          MarianneWrayStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MarianneWrayhandleOnline
-          );
-          MarianneWrayStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="Mini_Devil69-twitch-embed"></div>
-      <script defer async>
-        var Mini_Devil69options = {
-          channel: "Mini_Devil69",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var Mini_Devil69Stream = new Twitch.Embed(
-          "Mini_Devil69-twitch-embed",
-          Mini_Devil69options
-        );
-        Mini_Devil69Stream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          Mini_Devil69initiate
-        );
-        function Mini_Devil69initiate() {
-          Mini_Devil69Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Mini_Devil69handleOnline
-          );
-          Mini_Devil69Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Mini_Devil69handleOffline
-          );
-          Mini_Devil69Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Mini_Devil69initiate
-          );
-        }
-        function Mini_Devil69handleOnline() {
-          document
-            .getElementById("Mini_Devil69-twitch-embed")
-            .classList.remove("hidden");
-          Mini_Devil69Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Mini_Devil69handleOnline
-          );
-          Mini_Devil69Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Mini_Devil69handleOffline
-          );
-          Mini_Devil69Stream.setMuted(false);
-        }
-        function Mini_Devil69handleOffline() {
-          document
-            .getElementById("Mini_Devil69-twitch-embed")
-            .classList.add("hidden");
-          Mini_Devil69Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Mini_Devil69handleOffline
-          );
-          Mini_Devil69Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Mini_Devil69handleOnline
-          );
-          Mini_Devil69Stream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="toastythabrave-twitch-embed"></div>
-      <script defer async>
+
+
+
+
+<div class="toastythabrave-embed"></div>
+      <div id="toastythabrave-embed"></div>
+      
+      <div class="toastythabrave-player"></div>
+      <div id="toastythabrave-player"></div>
+
+      <script>
         var toastythabraveoptions = {
           channel: "toastythabrave",
-          width: 940,
-          height: 300,
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -989,65 +619,49 @@
             "localhost",
           ],
         };
-        var toastythabraveStream = new Twitch.Embed(
-          "toastythabrave-twitch-embed",
-          toastythabraveoptions
-        );
-        toastythabraveStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          toastythabraveinitiate
-        );
+      
+        var toastythabraveplayer = new Twitch.Player("toastythabrave-player", toastythabraveoptions);
+        var toastythabraveembed = new Twitch.Embed("toastythabrave-embed", toastythabraveoptions);
+        toastythabraveplayer.addEventListener(Twitch.Player.READY, toastythabraveinitiate)
+        toastythabraveembed.addEventListener(Twitch.Embed.VIDEO_READY, toastythabraveinitiate)
+    
         function toastythabraveinitiate() {
-          toastythabraveStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            toastythabravehandleOnline
-          );
-          toastythabraveStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            toastythabravehandleOffline
-          );
-          toastythabraveStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            toastythabraveinitiate
-          );
+          toastythabraveplayer.addEventListener(Twitch.Player.ONLINE, toastythabraveOnline);
+          toastythabraveplayer.addEventListener(Twitch.Player.OFFLINE, toastythabraveOffline);
+          toastythabraveplayer.removeEventListener(Twitch.Player.READY, toastythabraveinitiate);
         }
-        function toastythabravehandleOnline() {
-          document
-            .getElementById("toastythabrave-twitch-embed")
-            .classList.remove("hidden");
-          toastythabraveStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            toastythabravehandleOnline
-          );
-          toastythabraveStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            toastythabravehandleOffline
-          );
-          toastythabraveStream.setMuted(false);
+    
+        function toastythabraveOnline() {
+          document.getElementById("toastythabrave-embed").classList.remove('hide');
+          document.getElementByClass("toastythabrave-embed").classList.add('hide');
+          toastythabraveplayer.removeEventListener(Twitch.Player.ONLINE, toastythabraveOnline);
+          toastythabraveplayer.addEventListener(Twitch.Player.OFFLINE, toastythabraveOffline);
+          toastythabraveplayer.setMuted(false);
         }
-        function toastythabravehandleOffline() {
-          document
-            .getElementById("toastythabrave-twitch-embed")
-            .classList.add("hidden");
-          toastythabraveStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            toastythabravehandleOffline
-          );
-          toastythabraveStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            toastythabravehandleOnline
-          );
-          toastythabraveStream.setMuted(true);
+    
+        function toastythabraveOffline() {
+          document.getElementById("toastythabrave-embed").classList.add('hide');
+          document.getElementByClass("toastythabrave-embed").classList.add('hide');
+          toastythabraveplayer.removeEventListener(Twitch.Player.OFFLINE, toastythabraveOffline);
+          toastythabraveplayer.addEventListener(Twitch.Player.ONLINE, toastythabraveOnline);
+          toastythabraveplayer.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="SKSGodofGames-twitch-embed"></div>
-      <script defer async>
-        var SKSGodofGamesoptions = {
-          channel: "SKSGodofGames",
-          width: 940,
-          height: 300,
+
+
+
+<div class="theelphyys-embed"></div>
+      <div id="theelphyys-embed"></div>
+      
+      <div class="theelphyys-player"></div>
+      <div id="theelphyys-player"></div>
+
+      <script>
+        var theelphyysoptions = {
+          channel: "theelphyys",
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -1058,65 +672,49 @@
             "localhost",
           ],
         };
-        var SKSGodofGamesStream = new Twitch.Embed(
-          "SKSGodofGames-twitch-embed",
-          SKSGodofGamesoptions
-        );
-        SKSGodofGamesStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          SKSGodofGamesinitiate
-        );
-        function SKSGodofGamesinitiate() {
-          SKSGodofGamesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SKSGodofGameshandleOnline
-          );
-          SKSGodofGamesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SKSGodofGameshandleOffline
-          );
-          SKSGodofGamesStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SKSGodofGamesinitiate
-          );
+      
+        var theelphyysplayer = new Twitch.Player("theelphyys-player", theelphyysoptions);
+        var theelphyysembed = new Twitch.Embed("theelphyys-embed", theelphyysoptions);
+        theelphyysplayer.addEventListener(Twitch.Player.READY, theelphyysinitiate)
+        theelphyysembed.addEventListener(Twitch.Embed.VIDEO_READY, theelphyysinitiate)
+    
+        function theelphyysinitiate() {
+          theelphyysplayer.addEventListener(Twitch.Player.ONLINE, theelphyysOnline);
+          theelphyysplayer.addEventListener(Twitch.Player.OFFLINE, theelphyysOffline);
+          theelphyysplayer.removeEventListener(Twitch.Player.READY, theelphyysinitiate);
         }
-        function SKSGodofGameshandleOnline() {
-          document
-            .getElementById("SKSGodofGames-twitch-embed")
-            .classList.remove("hidden");
-          SKSGodofGamesStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SKSGodofGameshandleOnline
-          );
-          SKSGodofGamesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SKSGodofGameshandleOffline
-          );
-          SKSGodofGamesStream.setMuted(false);
+    
+        function theelphyysOnline() {
+          document.getElementById("theelphyys-embed").classList.remove('hide');
+          document.getElementByClass("theelphyys-embed").classList.add('hide');
+          theelphyysplayer.removeEventListener(Twitch.Player.ONLINE, theelphyysOnline);
+          theelphyysplayer.addEventListener(Twitch.Player.OFFLINE, theelphyysOffline);
+          theelphyysplayer.setMuted(false);
         }
-        function SKSGodofGameshandleOffline() {
-          document
-            .getElementById("SKSGodofGames-twitch-embed")
-            .classList.add("hidden");
-          SKSGodofGamesStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SKSGodofGameshandleOffline
-          );
-          SKSGodofGamesStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SKSGodofGameshandleOnline
-          );
-          SKSGodofGamesStream.setMuted(true);
+    
+        function theelphyysOffline() {
+          document.getElementById("theelphyys-embed").classList.add('hide');
+          document.getElementByClass("theelphyys-embed").classList.add('hide');
+          theelphyysplayer.removeEventListener(Twitch.Player.OFFLINE, theelphyysOffline);
+          theelphyysplayer.addEventListener(Twitch.Player.ONLINE, theelphyysOnline);
+          theelphyysplayer.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="kiswhale_pwns-twitch-embed"></div>
-      <script defer async>
-        var kiswhale_pwnsoptions = {
-          channel: "kiswhale_pwns",
-          width: 940,
-          height: 300,
+
+
+
+<div class="dany3lll3-embed"></div>
+      <div id="dany3lll3-embed"></div>
+      
+      <div class="dany3lll3-player"></div>
+      <div id="dany3lll3-player"></div>
+
+      <script>
+        var dany3lll3options = {
+          channel: "dany3lll3",
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -1127,65 +725,49 @@
             "localhost",
           ],
         };
-        var kiswhale_pwnsStream = new Twitch.Embed(
-          "kiswhale_pwns-twitch-embed",
-          kiswhale_pwnsoptions
-        );
-        kiswhale_pwnsStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          kiswhale_pwnsinitiate
-        );
-        function kiswhale_pwnsinitiate() {
-          kiswhale_pwnsStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            kiswhale_pwnshandleOnline
-          );
-          kiswhale_pwnsStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            kiswhale_pwnshandleOffline
-          );
-          kiswhale_pwnsStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            kiswhale_pwnsinitiate
-          );
+      
+        var dany3lll3player = new Twitch.Player("dany3lll3-player", dany3lll3options);
+        var dany3lll3embed = new Twitch.Embed("dany3lll3-embed", dany3lll3options);
+        dany3lll3player.addEventListener(Twitch.Player.READY, dany3lll3initiate)
+        dany3lll3embed.addEventListener(Twitch.Embed.VIDEO_READY, dany3lll3initiate)
+    
+        function dany3lll3initiate() {
+          dany3lll3player.addEventListener(Twitch.Player.ONLINE, dany3lll3Online);
+          dany3lll3player.addEventListener(Twitch.Player.OFFLINE, dany3lll3Offline);
+          dany3lll3player.removeEventListener(Twitch.Player.READY, dany3lll3initiate);
         }
-        function kiswhale_pwnshandleOnline() {
-          document
-            .getElementById("kiswhale_pwns-twitch-embed")
-            .classList.remove("hidden");
-          kiswhale_pwnsStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            kiswhale_pwnshandleOnline
-          );
-          kiswhale_pwnsStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            kiswhale_pwnshandleOffline
-          );
-          kiswhale_pwnsStream.setMuted(false);
+    
+        function dany3lll3Online() {
+          document.getElementById("dany3lll3-embed").classList.remove('hide');
+          document.getElementByClass("dany3lll3-embed").classList.add('hide');
+          dany3lll3player.removeEventListener(Twitch.Player.ONLINE, dany3lll3Online);
+          dany3lll3player.addEventListener(Twitch.Player.OFFLINE, dany3lll3Offline);
+          dany3lll3player.setMuted(false);
         }
-        function kiswhale_pwnshandleOffline() {
-          document
-            .getElementById("kiswhale_pwns-twitch-embed")
-            .classList.add("hidden");
-          kiswhale_pwnsStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            kiswhale_pwnshandleOffline
-          );
-          kiswhale_pwnsStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            kiswhale_pwnshandleOnline
-          );
-          kiswhale_pwnsStream.setMuted(true);
+    
+        function dany3lll3Offline() {
+          document.getElementById("dany3lll3-embed").classList.add('hide');
+          document.getElementByClass("dany3lll3-embed").classList.add('hide');
+          dany3lll3player.removeEventListener(Twitch.Player.OFFLINE, dany3lll3Offline);
+          dany3lll3player.addEventListener(Twitch.Player.ONLINE, dany3lll3Online);
+          dany3lll3player.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="Proto_Peach-twitch-embed"></div>
-      <script defer async>
-        var Proto_Peachoptions = {
-          channel: "Proto_Peach",
-          width: 940,
-          height: 300,
+
+
+
+<div class="sksgodofgames-embed"></div>
+      <div id="sksgodofgames-embed"></div>
+      
+      <div class="sksgodofgames-player"></div>
+      <div id="sksgodofgames-player"></div>
+
+      <script>
+        var sksgodofgamesoptions = {
+          channel: "sksgodofgames",
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -1196,954 +778,50 @@
             "localhost",
           ],
         };
-        var Proto_PeachStream = new Twitch.Embed(
-          "Proto_Peach-twitch-embed",
-          Proto_Peachoptions
-        );
-        Proto_PeachStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          Proto_Peachinitiate
-        );
-        function Proto_Peachinitiate() {
-          Proto_PeachStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Proto_PeachhandleOnline
-          );
-          Proto_PeachStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Proto_PeachhandleOffline
-          );
-          Proto_PeachStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Proto_Peachinitiate
-          );
+      
+        var sksgodofgamesplayer = new Twitch.Player("sksgodofgames-player", sksgodofgamesoptions);
+        var sksgodofgamesembed = new Twitch.Embed("sksgodofgames-embed", sksgodofgamesoptions);
+        sksgodofgamesplayer.addEventListener(Twitch.Player.READY, sksgodofgamesinitiate)
+        sksgodofgamesembed.addEventListener(Twitch.Embed.VIDEO_READY, sksgodofgamesinitiate)
+    
+        function sksgodofgamesinitiate() {
+          sksgodofgamesplayer.addEventListener(Twitch.Player.ONLINE, sksgodofgamesOnline);
+          sksgodofgamesplayer.addEventListener(Twitch.Player.OFFLINE, sksgodofgamesOffline);
+          sksgodofgamesplayer.removeEventListener(Twitch.Player.READY, sksgodofgamesinitiate);
         }
-        function Proto_PeachhandleOnline() {
-          document
-            .getElementById("Proto_Peach-twitch-embed")
-            .classList.remove("hidden");
-          Proto_PeachStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Proto_PeachhandleOnline
-          );
-          Proto_PeachStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Proto_PeachhandleOffline
-          );
-          Proto_PeachStream.setMuted(false);
+    
+        function sksgodofgamesOnline() {
+          document.getElementById("sksgodofgames-embed").classList.remove('hide');
+          document.getElementByClass("sksgodofgames-embed").classList.add('hide');
+          sksgodofgamesplayer.removeEventListener(Twitch.Player.ONLINE, sksgodofgamesOnline);
+          sksgodofgamesplayer.addEventListener(Twitch.Player.OFFLINE, sksgodofgamesOffline);
+          sksgodofgamesplayer.setMuted(false);
         }
-        function Proto_PeachhandleOffline() {
-          document
-            .getElementById("Proto_Peach-twitch-embed")
-            .classList.add("hidden");
-          Proto_PeachStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Proto_PeachhandleOffline
-          );
-          Proto_PeachStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Proto_PeachhandleOnline
-          );
-          Proto_PeachStream.setMuted(true);
+    
+        function sksgodofgamesOffline() {
+          document.getElementById("sksgodofgames-embed").classList.add('hide');
+          document.getElementByClass("sksgodofgames-embed").classList.add('hide');
+          sksgodofgamesplayer.removeEventListener(Twitch.Player.OFFLINE, sksgodofgamesOffline);
+          sksgodofgamesplayer.addEventListener(Twitch.Player.ONLINE, sksgodofgamesOnline);
+          sksgodofgamesplayer.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="Annaomaly-twitch-embed"></div>
-      <script defer async>
-        var Annaomalyoptions = {
-          channel: "Annaomaly",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var AnnaomalyStream = new Twitch.Embed(
-          "Annaomaly-twitch-embed",
-          Annaomalyoptions
-        );
-        AnnaomalyStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          Annaomalyinitiate
-        );
-        function Annaomalyinitiate() {
-          AnnaomalyStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            AnnaomalyhandleOnline
-          );
-          AnnaomalyStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            AnnaomalyhandleOffline
-          );
-          AnnaomalyStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Annaomalyinitiate
-          );
-        }
-        function AnnaomalyhandleOnline() {
-          document
-            .getElementById("Annaomaly-twitch-embed")
-            .classList.remove("hidden");
-          AnnaomalyStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            AnnaomalyhandleOnline
-          );
-          AnnaomalyStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            AnnaomalyhandleOffline
-          );
-          AnnaomalyStream.setMuted(false);
-        }
-        function AnnaomalyhandleOffline() {
-          document
-            .getElementById("Annaomaly-twitch-embed")
-            .classList.add("hidden");
-          AnnaomalyStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            AnnaomalyhandleOffline
-          );
-          AnnaomalyStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            AnnaomalyhandleOnline
-          );
-          AnnaomalyStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="DemiSpooks-twitch-embed"></div>
-      <script defer async>
-        var DemiSpooksoptions = {
-          channel: "DemiSpooks",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var DemiSpooksStream = new Twitch.Embed(
-          "DemiSpooks-twitch-embed",
-          DemiSpooksoptions
-        );
-        DemiSpooksStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          DemiSpooksinitiate
-        );
-        function DemiSpooksinitiate() {
-          DemiSpooksStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DemiSpookshandleOnline
-          );
-          DemiSpooksStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DemiSpookshandleOffline
-          );
-          DemiSpooksStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DemiSpooksinitiate
-          );
-        }
-        function DemiSpookshandleOnline() {
-          document
-            .getElementById("DemiSpooks-twitch-embed")
-            .classList.remove("hidden");
-          DemiSpooksStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DemiSpookshandleOnline
-          );
-          DemiSpooksStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DemiSpookshandleOffline
-          );
-          DemiSpooksStream.setMuted(false);
-        }
-        function DemiSpookshandleOffline() {
-          document
-            .getElementById("DemiSpooks-twitch-embed")
-            .classList.add("hidden");
-          DemiSpooksStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DemiSpookshandleOffline
-          );
-          DemiSpooksStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DemiSpookshandleOnline
-          );
-          DemiSpooksStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="DieselThreads-twitch-embed"></div>
-      <script defer async>
-        var DieselThreadsoptions = {
-          channel: "DieselThreads",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var DieselThreadsStream = new Twitch.Embed(
-          "DieselThreads-twitch-embed",
-          DieselThreadsoptions
-        );
-        DieselThreadsStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          DieselThreadsinitiate
-        );
-        function DieselThreadsinitiate() {
-          DieselThreadsStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DieselThreadshandleOnline
-          );
-          DieselThreadsStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DieselThreadshandleOffline
-          );
-          DieselThreadsStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DieselThreadsinitiate
-          );
-        }
-        function DieselThreadshandleOnline() {
-          document
-            .getElementById("DieselThreads-twitch-embed")
-            .classList.remove("hidden");
-          DieselThreadsStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DieselThreadshandleOnline
-          );
-          DieselThreadsStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DieselThreadshandleOffline
-          );
-          DieselThreadsStream.setMuted(false);
-        }
-        function DieselThreadshandleOffline() {
-          document
-            .getElementById("DieselThreads-twitch-embed")
-            .classList.add("hidden");
-          DieselThreadsStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DieselThreadshandleOffline
-          );
-          DieselThreadsStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            DieselThreadshandleOnline
-          );
-          DieselThreadsStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="IceTigerZone-twitch-embed"></div>
-      <script defer async>
-        var IceTigerZoneoptions = {
-          channel: "IceTigerZone",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var IceTigerZoneStream = new Twitch.Embed(
-          "IceTigerZone-twitch-embed",
-          IceTigerZoneoptions
-        );
-        IceTigerZoneStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          IceTigerZoneinitiate
-        );
-        function IceTigerZoneinitiate() {
-          IceTigerZoneStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            IceTigerZonehandleOnline
-          );
-          IceTigerZoneStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            IceTigerZonehandleOffline
-          );
-          IceTigerZoneStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            IceTigerZoneinitiate
-          );
-        }
-        function IceTigerZonehandleOnline() {
-          document
-            .getElementById("IceTigerZone-twitch-embed")
-            .classList.remove("hidden");
-          IceTigerZoneStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            IceTigerZonehandleOnline
-          );
-          IceTigerZoneStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            IceTigerZonehandleOffline
-          );
-          IceTigerZoneStream.setMuted(false);
-        }
-        function IceTigerZonehandleOffline() {
-          document
-            .getElementById("IceTigerZone-twitch-embed")
-            .classList.add("hidden");
-          IceTigerZoneStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            IceTigerZonehandleOffline
-          );
-          IceTigerZoneStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            IceTigerZonehandleOnline
-          );
-          IceTigerZoneStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="JazzTheGaymer-twitch-embed"></div>
-      <script defer async>
-        var JazzTheGaymeroptions = {
-          channel: "JazzTheGaymer",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var JazzTheGaymerStream = new Twitch.Embed(
-          "JazzTheGaymer-twitch-embed",
-          JazzTheGaymeroptions
-        );
-        JazzTheGaymerStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          JazzTheGaymerinitiate
-        );
-        function JazzTheGaymerinitiate() {
-          JazzTheGaymerStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JazzTheGaymerhandleOnline
-          );
-          JazzTheGaymerStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JazzTheGaymerhandleOffline
-          );
-          JazzTheGaymerStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JazzTheGaymerinitiate
-          );
-        }
-        function JazzTheGaymerhandleOnline() {
-          document
-            .getElementById("JazzTheGaymer-twitch-embed")
-            .classList.remove("hidden");
-          JazzTheGaymerStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JazzTheGaymerhandleOnline
-          );
-          JazzTheGaymerStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JazzTheGaymerhandleOffline
-          );
-          JazzTheGaymerStream.setMuted(false);
-        }
-        function JazzTheGaymerhandleOffline() {
-          document
-            .getElementById("JazzTheGaymer-twitch-embed")
-            .classList.add("hidden");
-          JazzTheGaymerStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JazzTheGaymerhandleOffline
-          );
-          JazzTheGaymerStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JazzTheGaymerhandleOnline
-          );
-          JazzTheGaymerStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="JokerKnowsBest-twitch-embed"></div>
-      <script defer async>
-        var JokerKnowsBestoptions = {
-          channel: "JokerKnowsBest",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var JokerKnowsBestStream = new Twitch.Embed(
-          "JokerKnowsBest-twitch-embed",
-          JokerKnowsBestoptions
-        );
-        JokerKnowsBestStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          JokerKnowsBestinitiate
-        );
-        function JokerKnowsBestinitiate() {
-          JokerKnowsBestStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JokerKnowsBesthandleOnline
-          );
-          JokerKnowsBestStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JokerKnowsBesthandleOffline
-          );
-          JokerKnowsBestStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JokerKnowsBestinitiate
-          );
-        }
-        function JokerKnowsBesthandleOnline() {
-          document
-            .getElementById("JokerKnowsBest-twitch-embed")
-            .classList.remove("hidden");
-          JokerKnowsBestStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JokerKnowsBesthandleOnline
-          );
-          JokerKnowsBestStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JokerKnowsBesthandleOffline
-          );
-          JokerKnowsBestStream.setMuted(false);
-        }
-        function JokerKnowsBesthandleOffline() {
-          document
-            .getElementById("JokerKnowsBest-twitch-embed")
-            .classList.add("hidden");
-          JokerKnowsBestStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JokerKnowsBesthandleOffline
-          );
-          JokerKnowsBestStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            JokerKnowsBesthandleOnline
-          );
-          JokerKnowsBestStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="LaxQc-twitch-embed"></div>
-      <script defer async>
-        var LaxQcoptions = {
-          channel: "LaxQc",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var LaxQcStream = new Twitch.Embed("LaxQc-twitch-embed", LaxQcoptions);
-        LaxQcStream.addEventListener(Twitch.Embed.VIDEO_READY, LaxQcinitiate);
-        function LaxQcinitiate() {
-          LaxQcStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LaxQchandleOnline
-          );
-          LaxQcStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LaxQchandleOffline
-          );
-          LaxQcStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LaxQcinitiate
-          );
-        }
-        function LaxQchandleOnline() {
-          document
-            .getElementById("LaxQc-twitch-embed")
-            .classList.remove("hidden");
-          LaxQcStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LaxQchandleOnline
-          );
-          LaxQcStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LaxQchandleOffline
-          );
-          LaxQcStream.setMuted(false);
-        }
-        function LaxQchandleOffline() {
-          document.getElementById("LaxQc-twitch-embed").classList.add("hidden");
-          LaxQcStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LaxQchandleOffline
-          );
-          LaxQcStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LaxQchandleOnline
-          );
-          LaxQcStream.setMuted(true);
-        }
-      </script>
-        </div>
-    <div class="streamer">
-      <div id="LuminiousDBD-twitch-embed"></div>
-      <script defer async>
-        var LuminiousDBDoptions = {
-          channel: "LuminiousDBD",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var LuminiousDBDStream = new Twitch.Embed(
-          "LuminiousDBD-twitch-embed",
-          LuminiousDBDoptions
-        );
-        LuminiousDBDStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          LuminiousDBDinitiate
-        );
-        function LuminiousDBDinitiate() {
-          LuminiousDBDStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LuminiousDBDhandleOnline
-          );
-          LuminiousDBDStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LuminiousDBDhandleOffline
-          );
-          LuminiousDBDStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LuminiousDBDinitiate
-          );
-        }
-        function LuminiousDBDhandleOnline() {
-          document
-            .getElementById("LuminiousDBD-twitch-embed")
-            .classList.remove("hidden");
-          LuminiousDBDStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LuminiousDBDhandleOnline
-          );
-          LuminiousDBDStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LuminiousDBDhandleOffline
-          );
-          LuminiousDBDStream.setMuted(false);
-        }
-        function LuminiousDBDhandleOffline() {
-          document
-            .getElementById("LuminiousDBD-twitch-embed")
-            .classList.add("hidden");
-          LuminiousDBDStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LuminiousDBDhandleOffline
-          );
-          LuminiousDBDStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            LuminiousDBDhandleOnline
-          );
-          LuminiousDBDStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="MadnessQTV-twitch-embed"></div>
-      <script defer async>
-        var MadnessQTVoptions = {
-          channel: "MadnessQTV",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var MadnessQTVStream = new Twitch.Embed(
-          "MadnessQTV-twitch-embed",
-          MadnessQTVoptions
-        );
-        MadnessQTVStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          MadnessQTVinitiate
-        );
-        function MadnessQTVinitiate() {
-          MadnessQTVStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MadnessQTVhandleOnline
-          );
-          MadnessQTVStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MadnessQTVhandleOffline
-          );
-          MadnessQTVStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MadnessQTVinitiate
-          );
-        }
-        function MadnessQTVhandleOnline() {
-          document
-            .getElementById("MadnessQTV-twitch-embed")
-            .classList.remove("hidden");
-          MadnessQTVStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MadnessQTVhandleOnline
-          );
-          MadnessQTVStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MadnessQTVhandleOffline
-          );
-          MadnessQTVStream.setMuted(false);
-        }
-        function MadnessQTVhandleOffline() {
-          document
-            .getElementById("MadnessQTV-twitch-embed")
-            .classList.add("hidden");
-          MadnessQTVStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MadnessQTVhandleOffline
-          );
-          MadnessQTVStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            MadnessQTVhandleOnline
-          );
-          MadnessQTVStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="R3V3RS3R-twitch-embed"></div>
-      <script defer async>
-        var R3V3RS3Roptions = {
-          channel: "R3V3RS3R",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var R3V3RS3RStream = new Twitch.Embed(
-          "R3V3RS3R-twitch-embed",
-          R3V3RS3Roptions
-        );
-        R3V3RS3RStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          R3V3RS3Rinitiate
-        );
-        function R3V3RS3Rinitiate() {
-          R3V3RS3RStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            R3V3RS3RhandleOnline
-          );
-          R3V3RS3RStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            R3V3RS3RhandleOffline
-          );
-          R3V3RS3RStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            R3V3RS3Rinitiate
-          );
-        }
-        function R3V3RS3RhandleOnline() {
-          document
-            .getElementById("R3V3RS3R-twitch-embed")
-            .classList.remove("hidden");
-          R3V3RS3RStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            R3V3RS3RhandleOnline
-          );
-          R3V3RS3RStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            R3V3RS3RhandleOffline
-          );
-          R3V3RS3RStream.setMuted(false);
-        }
-        function R3V3RS3RhandleOffline() {
-          document
-            .getElementById("R3V3RS3R-twitch-embed")
-            .classList.add("hidden");
-          R3V3RS3RStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            R3V3RS3RhandleOffline
-          );
-          R3V3RS3RStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            R3V3RS3RhandleOnline
-          );
-          R3V3RS3RStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="saltyluk-twitch-embed"></div>
-      <script defer async>
-        var saltylukoptions = {
-          channel: "saltyluk",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var saltylukStream = new Twitch.Embed(
-          "saltyluk-twitch-embed",
-          saltylukoptions
-        );
-        saltylukStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          saltylukinitiate
-        );
-        function saltylukinitiate() {
-          saltylukStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            saltylukhandleOnline
-          );
-          saltylukStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            saltylukhandleOffline
-          );
-          saltylukStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            saltylukinitiate
-          );
-        }
-        function saltylukhandleOnline() {
-          document
-            .getElementById("saltyluk-twitch-embed")
-            .classList.remove("hidden");
-          saltylukStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            saltylukhandleOnline
-          );
-          saltylukStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            saltylukhandleOffline
-          );
-          saltylukStream.setMuted(false);
-        }
-        function saltylukhandleOffline() {
-          document
-            .getElementById("saltyluk-twitch-embed")
-            .classList.add("hidden");
-          saltylukStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            saltylukhandleOffline
-          );
-          saltylukStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            saltylukhandleOnline
-          );
-          saltylukStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="SkaterWax-twitch-embed"></div>
-      <script defer async>
-        var SkaterWaxoptions = {
-          channel: "SkaterWax",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var SkaterWaxStream = new Twitch.Embed(
-          "SkaterWax-twitch-embed",
-          SkaterWaxoptions
-        );
-        SkaterWaxStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          SkaterWaxinitiate
-        );
-        function SkaterWaxinitiate() {
-          SkaterWaxStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SkaterWaxhandleOnline
-          );
-          SkaterWaxStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SkaterWaxhandleOffline
-          );
-          SkaterWaxStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SkaterWaxinitiate
-          );
-        }
-        function SkaterWaxhandleOnline() {
-          document
-            .getElementById("SkaterWax-twitch-embed")
-            .classList.remove("hidden");
-          SkaterWaxStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SkaterWaxhandleOnline
-          );
-          SkaterWaxStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SkaterWaxhandleOffline
-          );
-          SkaterWaxStream.setMuted(false);
-        }
-        function SkaterWaxhandleOffline() {
-          document
-            .getElementById("SkaterWax-twitch-embed")
-            .classList.add("hidden");
-          SkaterWaxStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SkaterWaxhandleOffline
-          );
-          SkaterWaxStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SkaterWaxhandleOnline
-          );
-          SkaterWaxStream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="Sold1er56-twitch-embed"></div>
-      <script defer async>
-        var Sold1er56options = {
-          channel: "Sold1er56",
-          width: 940,
-          height: 300,
-          layout: "video-with-chat",
-          theme: "dark",
-          parent: [
-            "glitch.com",
-            "xstarwake.org",
-            "www.xstarwake.org",
-            "www-xstarwake-org.glitch.me",
-            "localhost",
-          ],
-        };
-        var Sold1er56Stream = new Twitch.Embed(
-          "Sold1er56-twitch-embed",
-          Sold1er56options
-        );
-        Sold1er56Stream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          Sold1er56initiate
-        );
-        function Sold1er56initiate() {
-          Sold1er56Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Sold1er56handleOnline
-          );
-          Sold1er56Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Sold1er56handleOffline
-          );
-          Sold1er56Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Sold1er56initiate
-          );
-        }
-        function Sold1er56handleOnline() {
-          document
-            .getElementById("Sold1er56-twitch-embed")
-            .classList.remove("hidden");
-          Sold1er56Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Sold1er56handleOnline
-          );
-          Sold1er56Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Sold1er56handleOffline
-          );
-          Sold1er56Stream.setMuted(false);
-        }
-        function Sold1er56handleOffline() {
-          document
-            .getElementById("Sold1er56-twitch-embed")
-            .classList.add("hidden");
-          Sold1er56Stream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Sold1er56handleOffline
-          );
-          Sold1er56Stream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Sold1er56handleOnline
-          );
-          Sold1er56Stream.setMuted(true);
-        }
-      </script>
-    </div>
-    <div class="streamer">
-      <div id="skylarpuppy-twitch-embed"></div>
-      <script defer async>
+
+
+
+
+<div class="skylarpuppy-embed"></div>
+      <div id="skylarpuppy-embed"></div>
+      
+      <div class="skylarpuppy-player"></div>
+      <div id="skylarpuppy-player"></div>
+
+      <script>
         var skylarpuppyoptions = {
           channel: "skylarpuppy",
-          width: 940,
-          height: 300,
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -2154,65 +832,49 @@
             "localhost",
           ],
         };
-        var skylarpuppyStream = new Twitch.Embed(
-          "skylarpuppy-twitch-embed",
-          skylarpuppyoptions
-        );
-        skylarpuppyStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          skylarpuppyinitiate
-        );
+      
+        var skylarpuppyplayer = new Twitch.Player("skylarpuppy-player", skylarpuppyoptions);
+        var skylarpuppyembed = new Twitch.Embed("skylarpuppy-embed", skylarpuppyoptions);
+        skylarpuppyplayer.addEventListener(Twitch.Player.READY, skylarpuppyinitiate)
+        skylarpuppyembed.addEventListener(Twitch.Embed.VIDEO_READY, skylarpuppyinitiate)
+    
         function skylarpuppyinitiate() {
-          skylarpuppyStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            skylarpuppyhandleOnline
-          );
-          skylarpuppyStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            skylarpuppyhandleOffline
-          );
-          skylarpuppyStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            skylarpuppyinitiate
-          );
+          skylarpuppyplayer.addEventListener(Twitch.Player.ONLINE, skylarpuppyOnline);
+          skylarpuppyplayer.addEventListener(Twitch.Player.OFFLINE, skylarpuppyOffline);
+          skylarpuppyplayer.removeEventListener(Twitch.Player.READY, skylarpuppyinitiate);
         }
-        function skylarpuppyhandleOnline() {
-          document
-            .getElementById("skylarpuppy-twitch-embed")
-            .classList.remove("hidden");
-          skylarpuppyStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            skylarpuppyhandleOnline
-          );
-          skylarpuppyStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            skylarpuppyhandleOffline
-          );
-          skylarpuppyStream.setMuted(false);
+    
+        function skylarpuppyOnline() {
+          document.getElementById("skylarpuppy-embed").classList.remove('hide');
+          document.getElementByClass("skylarpuppy-embed").classList.add('hide');
+          skylarpuppyplayer.removeEventListener(Twitch.Player.ONLINE, skylarpuppyOnline);
+          skylarpuppyplayer.addEventListener(Twitch.Player.OFFLINE, skylarpuppyOffline);
+          skylarpuppyplayer.setMuted(false);
         }
-        function skylarpuppyhandleOffline() {
-          document
-            .getElementById("skylarpuppy-twitch-embed")
-            .classList.add("hidden");
-          skylarpuppyStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            skylarpuppyhandleOffline
-          );
-          skylarpuppyStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            skylarpuppyhandleOnline
-          );
-          skylarpuppyStream.setMuted(true);
+    
+        function skylarpuppyOffline() {
+          document.getElementById("skylarpuppy-embed").classList.add('hide');
+          document.getElementByClass("skylarpuppy-embed").classList.add('hide');
+          skylarpuppyplayer.removeEventListener(Twitch.Player.OFFLINE, skylarpuppyOffline);
+          skylarpuppyplayer.addEventListener(Twitch.Player.ONLINE, skylarpuppyOnline);
+          skylarpuppyplayer.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="Sonza-twitch-embed"></div>
-      <script defer async>
-        var Sonzaoptions = {
-          channel: "Sonza",
-          width: 940,
-          height: 300,
+
+
+
+<div class="skaterwax-embed"></div>
+      <div id="skaterwax-embed"></div>
+      
+      <div class="skaterwax-player"></div>
+      <div id="skaterwax-player"></div>
+
+      <script>
+        var skaterwaxoptions = {
+          channel: "skaterwax",
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -2223,57 +885,50 @@
             "localhost",
           ],
         };
-        var SonzaStream = new Twitch.Embed("Sonza-twitch-embed", Sonzaoptions);
-        SonzaStream.addEventListener(Twitch.Embed.VIDEO_READY, Sonzainitiate);
-        function Sonzainitiate() {
-          SonzaStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SonzahandleOnline
-          );
-          SonzaStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SonzahandleOffline
-          );
-          SonzaStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            Sonzainitiate
-          );
+      
+        var skaterwaxplayer = new Twitch.Player("skaterwax-player", skaterwaxoptions);
+        var skaterwaxembed = new Twitch.Embed("skaterwax-embed", skaterwaxoptions);
+        skaterwaxplayer.addEventListener(Twitch.Player.READY, skaterwaxinitiate)
+        skaterwaxembed.addEventListener(Twitch.Embed.VIDEO_READY, skaterwaxinitiate)
+    
+        function skaterwaxinitiate() {
+          skaterwaxplayer.addEventListener(Twitch.Player.ONLINE, skaterwaxOnline);
+          skaterwaxplayer.addEventListener(Twitch.Player.OFFLINE, skaterwaxOffline);
+          skaterwaxplayer.removeEventListener(Twitch.Player.READY, skaterwaxinitiate);
         }
-        function SonzahandleOnline() {
-          document
-            .getElementById("Sonza-twitch-embed")
-            .classList.remove("hidden");
-          SonzaStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SonzahandleOnline
-          );
-          SonzaStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SonzahandleOffline
-          );
-          SonzaStream.setMuted(false);
+    
+        function skaterwaxOnline() {
+          document.getElementById("skaterwax-embed").classList.remove('hide');
+          document.getElementByClass("skaterwax-embed").classList.add('hide');
+          skaterwaxplayer.removeEventListener(Twitch.Player.ONLINE, skaterwaxOnline);
+          skaterwaxplayer.addEventListener(Twitch.Player.OFFLINE, skaterwaxOffline);
+          skaterwaxplayer.setMuted(false);
         }
-        function SonzahandleOffline() {
-          document.getElementById("Sonza-twitch-embed").classList.add("hidden");
-          SonzaStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SonzahandleOffline
-          );
-          SonzaStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            SonzahandleOnline
-          );
-          SonzaStream.setMuted(true);
+    
+        function skaterwaxOffline() {
+          document.getElementById("skaterwax-embed").classList.add('hide');
+          document.getElementByClass("skaterwax-embed").classList.add('hide');
+          skaterwaxplayer.removeEventListener(Twitch.Player.OFFLINE, skaterwaxOffline);
+          skaterwaxplayer.addEventListener(Twitch.Player.ONLINE, skaterwaxOnline);
+          skaterwaxplayer.setMuted(true);
         }
+
       </script>
-    </div>
-    <div class="streamer">
-      <div id="xxTOWERDOGxx-twitch-embed"></div>
-      <script defer async>
-        var xxTOWERDOGxxoptions = {
-          channel: "xxTOWERDOGxx",
-          width: 940,
-          height: 300,
+
+
+
+
+<div class="annaomaly-embed"></div>
+      <div id="annaomaly-embed"></div>
+      
+      <div class="annaomaly-player"></div>
+      <div id="annaomaly-player"></div>
+
+      <script>
+        var annaomalyoptions = {
+          channel: "annaomaly",
+          width: 340,
+          height: 400,
           layout: "video-with-chat",
           theme: "dark",
           parent: [
@@ -2284,57 +939,895 @@
             "localhost",
           ],
         };
-        var xxTOWERDOGxxStream = new Twitch.Embed(
-          "xxTOWERDOGxx-twitch-embed",
-          xxTOWERDOGxxoptions
-        );
-        xxTOWERDOGxxStream.addEventListener(
-          Twitch.Embed.VIDEO_READY,
-          xxTOWERDOGxxinitiate
-        );
-        function xxTOWERDOGxxinitiate() {
-          xxTOWERDOGxxStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            xxTOWERDOGxxhandleOnline
-          );
-          xxTOWERDOGxxStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            xxTOWERDOGxxhandleOffline
-          );
-          xxTOWERDOGxxStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            xxTOWERDOGxxinitiate
-          );
+      
+        var annaomalyplayer = new Twitch.Player("annaomaly-player", annaomalyoptions);
+        var annaomalyembed = new Twitch.Embed("annaomaly-embed", annaomalyoptions);
+        annaomalyplayer.addEventListener(Twitch.Player.READY, annaomalyinitiate)
+        annaomalyembed.addEventListener(Twitch.Embed.VIDEO_READY, annaomalyinitiate)
+    
+        function annaomalyinitiate() {
+          annaomalyplayer.addEventListener(Twitch.Player.ONLINE, annaomalyOnline);
+          annaomalyplayer.addEventListener(Twitch.Player.OFFLINE, annaomalyOffline);
+          annaomalyplayer.removeEventListener(Twitch.Player.READY, annaomalyinitiate);
         }
-        function xxTOWERDOGxxhandleOnline() {
-          document
-            .getElementById("xxTOWERDOGxx-twitch-embed")
-            .classList.remove("hidden");
-          xxTOWERDOGxxStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            xxTOWERDOGxxhandleOnline
-          );
-          xxTOWERDOGxxStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            xxTOWERDOGxxhandleOffline
-          );
-          xxTOWERDOGxxStream.setMuted(false);
+    
+        function annaomalyOnline() {
+          document.getElementById("annaomaly-embed").classList.remove('hide');
+          document.getElementByClass("annaomaly-embed").classList.add('hide');
+          annaomalyplayer.removeEventListener(Twitch.Player.ONLINE, annaomalyOnline);
+          annaomalyplayer.addEventListener(Twitch.Player.OFFLINE, annaomalyOffline);
+          annaomalyplayer.setMuted(false);
         }
-        function xxTOWERDOGxxhandleOffline() {
-          document
-            .getElementById("xxTOWERDOGxx-twitch-embed")
-            .classList.add("hidden");
-          xxTOWERDOGxxStream.removeEventListener(
-            Twitch.Embed.VIDEO_READY,
-            xxTOWERDOGxxhandleOffline
-          );
-          xxTOWERDOGxxStream.addEventListener(
-            Twitch.Embed.VIDEO_READY,
-            xxTOWERDOGxxhandleOnline
-          );
-          xxTOWERDOGxxStream.setMuted(true);
+    
+        function annaomalyOffline() {
+          document.getElementById("annaomaly-embed").classList.add('hide');
+          document.getElementByClass("annaomaly-embed").classList.add('hide');
+          annaomalyplayer.removeEventListener(Twitch.Player.OFFLINE, annaomalyOffline);
+          annaomalyplayer.addEventListener(Twitch.Player.ONLINE, annaomalyOnline);
+          annaomalyplayer.setMuted(true);
         }
+
       </script>
-    </div>
-  </body>
+
+
+
+<div class="demispooks-embed"></div>
+      <div id="demispooks-embed"></div>
+      
+      <div class="demispooks-player"></div>
+      <div id="demispooks-player"></div>
+
+      <script>
+        var demispooksoptions = {
+          channel: "demispooks",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var demispooksplayer = new Twitch.Player("demispooks-player", demispooksoptions);
+        var demispooksembed = new Twitch.Embed("demispooks-embed", demispooksoptions);
+        demispooksplayer.addEventListener(Twitch.Player.READY, demispooksinitiate)
+        demispooksembed.addEventListener(Twitch.Embed.VIDEO_READY, demispooksinitiate)
+    
+        function demispooksinitiate() {
+          demispooksplayer.addEventListener(Twitch.Player.ONLINE, demispooksOnline);
+          demispooksplayer.addEventListener(Twitch.Player.OFFLINE, demispooksOffline);
+          demispooksplayer.removeEventListener(Twitch.Player.READY, demispooksinitiate);
+        }
+    
+        function demispooksOnline() {
+          document.getElementById("demispooks-embed").classList.remove('hide');
+          document.getElementByClass("demispooks-embed").classList.add('hide');
+          demispooksplayer.removeEventListener(Twitch.Player.ONLINE, demispooksOnline);
+          demispooksplayer.addEventListener(Twitch.Player.OFFLINE, demispooksOffline);
+          demispooksplayer.setMuted(false);
+        }
+    
+        function demispooksOffline() {
+          document.getElementById("demispooks-embed").classList.add('hide');
+          document.getElementByClass("demispooks-embed").classList.add('hide');
+          demispooksplayer.removeEventListener(Twitch.Player.OFFLINE, demispooksOffline);
+          demispooksplayer.addEventListener(Twitch.Player.ONLINE, demispooksOnline);
+          demispooksplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+
+<div class="icetigerzone-embed"></div>
+      <div id="icetigerzone-embed"></div>
+      
+      <div class="icetigerzone-player"></div>
+      <div id="icetigerzone-player"></div>
+
+      <script>
+        var icetigerzoneoptions = {
+          channel: "icetigerzone",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var icetigerzoneplayer = new Twitch.Player("icetigerzone-player", icetigerzoneoptions);
+        var icetigerzoneembed = new Twitch.Embed("icetigerzone-embed", icetigerzoneoptions);
+        icetigerzoneplayer.addEventListener(Twitch.Player.READY, icetigerzoneinitiate)
+        icetigerzoneembed.addEventListener(Twitch.Embed.VIDEO_READY, icetigerzoneinitiate)
+    
+        function icetigerzoneinitiate() {
+          icetigerzoneplayer.addEventListener(Twitch.Player.ONLINE, icetigerzoneOnline);
+          icetigerzoneplayer.addEventListener(Twitch.Player.OFFLINE, icetigerzoneOffline);
+          icetigerzoneplayer.removeEventListener(Twitch.Player.READY, icetigerzoneinitiate);
+        }
+    
+        function icetigerzoneOnline() {
+          document.getElementById("icetigerzone-embed").classList.remove('hide');
+          document.getElementByClass("icetigerzone-embed").classList.add('hide');
+          icetigerzoneplayer.removeEventListener(Twitch.Player.ONLINE, icetigerzoneOnline);
+          icetigerzoneplayer.addEventListener(Twitch.Player.OFFLINE, icetigerzoneOffline);
+          icetigerzoneplayer.setMuted(false);
+        }
+    
+        function icetigerzoneOffline() {
+          document.getElementById("icetigerzone-embed").classList.add('hide');
+          document.getElementByClass("icetigerzone-embed").classList.add('hide');
+          icetigerzoneplayer.removeEventListener(Twitch.Player.OFFLINE, icetigerzoneOffline);
+          icetigerzoneplayer.addEventListener(Twitch.Player.ONLINE, icetigerzoneOnline);
+          icetigerzoneplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+
+<div class="jazzthegaymer-embed"></div>
+      <div id="jazzthegaymer-embed"></div>
+      
+      <div class="jazzthegaymer-player"></div>
+      <div id="jazzthegaymer-player"></div>
+
+      <script>
+        var jazzthegaymeroptions = {
+          channel: "jazzthegaymer",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var jazzthegaymerplayer = new Twitch.Player("jazzthegaymer-player", jazzthegaymeroptions);
+        var jazzthegaymerembed = new Twitch.Embed("jazzthegaymer-embed", jazzthegaymeroptions);
+        jazzthegaymerplayer.addEventListener(Twitch.Player.READY, jazzthegaymerinitiate)
+        jazzthegaymerembed.addEventListener(Twitch.Embed.VIDEO_READY, jazzthegaymerinitiate)
+    
+        function jazzthegaymerinitiate() {
+          jazzthegaymerplayer.addEventListener(Twitch.Player.ONLINE, jazzthegaymerOnline);
+          jazzthegaymerplayer.addEventListener(Twitch.Player.OFFLINE, jazzthegaymerOffline);
+          jazzthegaymerplayer.removeEventListener(Twitch.Player.READY, jazzthegaymerinitiate);
+        }
+    
+        function jazzthegaymerOnline() {
+          document.getElementById("jazzthegaymer-embed").classList.remove('hide');
+          document.getElementByClass("jazzthegaymer-embed").classList.add('hide');
+          jazzthegaymerplayer.removeEventListener(Twitch.Player.ONLINE, jazzthegaymerOnline);
+          jazzthegaymerplayer.addEventListener(Twitch.Player.OFFLINE, jazzthegaymerOffline);
+          jazzthegaymerplayer.setMuted(false);
+        }
+    
+        function jazzthegaymerOffline() {
+          document.getElementById("jazzthegaymer-embed").classList.add('hide');
+          document.getElementByClass("jazzthegaymer-embed").classList.add('hide');
+          jazzthegaymerplayer.removeEventListener(Twitch.Player.OFFLINE, jazzthegaymerOffline);
+          jazzthegaymerplayer.addEventListener(Twitch.Player.ONLINE, jazzthegaymerOnline);
+          jazzthegaymerplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+
+<div class="jokerknowsbest-embed"></div>
+      <div id="jokerknowsbest-embed"></div>
+      
+      <div class="jokerknowsbest-player"></div>
+      <div id="jokerknowsbest-player"></div>
+
+      <script>
+        var jokerknowsbestoptions = {
+          channel: "jokerknowsbest",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var jokerknowsbestplayer = new Twitch.Player("jokerknowsbest-player", jokerknowsbestoptions);
+        var jokerknowsbestembed = new Twitch.Embed("jokerknowsbest-embed", jokerknowsbestoptions);
+        jokerknowsbestplayer.addEventListener(Twitch.Player.READY, jokerknowsbestinitiate)
+        jokerknowsbestembed.addEventListener(Twitch.Embed.VIDEO_READY, jokerknowsbestinitiate)
+    
+        function jokerknowsbestinitiate() {
+          jokerknowsbestplayer.addEventListener(Twitch.Player.ONLINE, jokerknowsbestOnline);
+          jokerknowsbestplayer.addEventListener(Twitch.Player.OFFLINE, jokerknowsbestOffline);
+          jokerknowsbestplayer.removeEventListener(Twitch.Player.READY, jokerknowsbestinitiate);
+        }
+    
+        function jokerknowsbestOnline() {
+          document.getElementById("jokerknowsbest-embed").classList.remove('hide');
+          document.getElementByClass("jokerknowsbest-embed").classList.add('hide');
+          jokerknowsbestplayer.removeEventListener(Twitch.Player.ONLINE, jokerknowsbestOnline);
+          jokerknowsbestplayer.addEventListener(Twitch.Player.OFFLINE, jokerknowsbestOffline);
+          jokerknowsbestplayer.setMuted(false);
+        }
+    
+        function jokerknowsbestOffline() {
+          document.getElementById("jokerknowsbest-embed").classList.add('hide');
+          document.getElementByClass("jokerknowsbest-embed").classList.add('hide');
+          jokerknowsbestplayer.removeEventListener(Twitch.Player.OFFLINE, jokerknowsbestOffline);
+          jokerknowsbestplayer.addEventListener(Twitch.Player.ONLINE, jokerknowsbestOnline);
+          jokerknowsbestplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+
+<div class="kiswhale_pwns-embed"></div>
+      <div id="kiswhale_pwns-embed"></div>
+      
+      <div class="kiswhale_pwns-player"></div>
+      <div id="kiswhale_pwns-player"></div>
+
+      <script>
+        var kiswhale_pwnsoptions = {
+          channel: "kiswhale_pwns",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var kiswhale_pwnsplayer = new Twitch.Player("kiswhale_pwns-player", kiswhale_pwnsoptions);
+        var kiswhale_pwnsembed = new Twitch.Embed("kiswhale_pwns-embed", kiswhale_pwnsoptions);
+        kiswhale_pwnsplayer.addEventListener(Twitch.Player.READY, kiswhale_pwnsinitiate)
+        kiswhale_pwnsembed.addEventListener(Twitch.Embed.VIDEO_READY, kiswhale_pwnsinitiate)
+    
+        function kiswhale_pwnsinitiate() {
+          kiswhale_pwnsplayer.addEventListener(Twitch.Player.ONLINE, kiswhale_pwnsOnline);
+          kiswhale_pwnsplayer.addEventListener(Twitch.Player.OFFLINE, kiswhale_pwnsOffline);
+          kiswhale_pwnsplayer.removeEventListener(Twitch.Player.READY, kiswhale_pwnsinitiate);
+        }
+    
+        function kiswhale_pwnsOnline() {
+          document.getElementById("kiswhale_pwns-embed").classList.remove('hide');
+          document.getElementByClass("kiswhale_pwns-embed").classList.add('hide');
+          kiswhale_pwnsplayer.removeEventListener(Twitch.Player.ONLINE, kiswhale_pwnsOnline);
+          kiswhale_pwnsplayer.addEventListener(Twitch.Player.OFFLINE, kiswhale_pwnsOffline);
+          kiswhale_pwnsplayer.setMuted(false);
+        }
+    
+        function kiswhale_pwnsOffline() {
+          document.getElementById("kiswhale_pwns-embed").classList.add('hide');
+          document.getElementByClass("kiswhale_pwns-embed").classList.add('hide');
+          kiswhale_pwnsplayer.removeEventListener(Twitch.Player.OFFLINE, kiswhale_pwnsOffline);
+          kiswhale_pwnsplayer.addEventListener(Twitch.Player.ONLINE, kiswhale_pwnsOnline);
+          kiswhale_pwnsplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+
+<div class="laxqc-embed"></div>
+      <div id="laxqc-embed"></div>
+      
+      <div class="laxqc-player"></div>
+      <div id="laxqc-player"></div>
+
+      <script>
+        var laxqcoptions = {
+          channel: "laxqc",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var laxqcplayer = new Twitch.Player("laxqc-player", laxqcoptions);
+        var laxqcembed = new Twitch.Embed("laxqc-embed", laxqcoptions);
+        laxqcplayer.addEventListener(Twitch.Player.READY, laxqcinitiate)
+        laxqcembed.addEventListener(Twitch.Embed.VIDEO_READY, laxqcinitiate)
+    
+        function laxqcinitiate() {
+          laxqcplayer.addEventListener(Twitch.Player.ONLINE, laxqcOnline);
+          laxqcplayer.addEventListener(Twitch.Player.OFFLINE, laxqcOffline);
+          laxqcplayer.removeEventListener(Twitch.Player.READY, laxqcinitiate);
+        }
+    
+        function laxqcOnline() {
+          document.getElementById("laxqc-embed").classList.remove('hide');
+          document.getElementByClass("laxqc-embed").classList.add('hide');
+          laxqcplayer.removeEventListener(Twitch.Player.ONLINE, laxqcOnline);
+          laxqcplayer.addEventListener(Twitch.Player.OFFLINE, laxqcOffline);
+          laxqcplayer.setMuted(false);
+        }
+    
+        function laxqcOffline() {
+          document.getElementById("laxqc-embed").classList.add('hide');
+          document.getElementByClass("laxqc-embed").classList.add('hide');
+          laxqcplayer.removeEventListener(Twitch.Player.OFFLINE, laxqcOffline);
+          laxqcplayer.addEventListener(Twitch.Player.ONLINE, laxqcOnline);
+          laxqcplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+
+<div class="luminiousdbd-embed"></div>
+      <div id="luminiousdbd-embed"></div>
+      
+      <div class="luminiousdbd-player"></div>
+      <div id="luminiousdbd-player"></div>
+
+      <script>
+        var luminiousdbdoptions = {
+          channel: "luminiousdbd",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var luminiousdbdplayer = new Twitch.Player("luminiousdbd-player", luminiousdbdoptions);
+        var luminiousdbdembed = new Twitch.Embed("luminiousdbd-embed", luminiousdbdoptions);
+        luminiousdbdplayer.addEventListener(Twitch.Player.READY, luminiousdbdinitiate)
+        luminiousdbdembed.addEventListener(Twitch.Embed.VIDEO_READY, luminiousdbdinitiate)
+    
+        function luminiousdbdinitiate() {
+          luminiousdbdplayer.addEventListener(Twitch.Player.ONLINE, luminiousdbdOnline);
+          luminiousdbdplayer.addEventListener(Twitch.Player.OFFLINE, luminiousdbdOffline);
+          luminiousdbdplayer.removeEventListener(Twitch.Player.READY, luminiousdbdinitiate);
+        }
+    
+        function luminiousdbdOnline() {
+          document.getElementById("luminiousdbd-embed").classList.remove('hide');
+          document.getElementByClass("luminiousdbd-embed").classList.add('hide');
+          luminiousdbdplayer.removeEventListener(Twitch.Player.ONLINE, luminiousdbdOnline);
+          luminiousdbdplayer.addEventListener(Twitch.Player.OFFLINE, luminiousdbdOffline);
+          luminiousdbdplayer.setMuted(false);
+        }
+    
+        function luminiousdbdOffline() {
+          document.getElementById("luminiousdbd-embed").classList.add('hide');
+          document.getElementByClass("luminiousdbd-embed").classList.add('hide');
+          luminiousdbdplayer.removeEventListener(Twitch.Player.OFFLINE, luminiousdbdOffline);
+          luminiousdbdplayer.addEventListener(Twitch.Player.ONLINE, luminiousdbdOnline);
+          luminiousdbdplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+<div class="madnessqtv-embed"></div>
+      <div id="madnessqtv-embed"></div>
+      
+      <div class="madnessqtv-player"></div>
+      <div id="madnessqtv-player"></div>
+
+      <script>
+        var madnessqtvoptions = {
+          channel: "madnessqtv",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var madnessqtvplayer = new Twitch.Player("madnessqtv-player", madnessqtvoptions);
+        var madnessqtvembed = new Twitch.Embed("madnessqtv-embed", madnessqtvoptions);
+        madnessqtvplayer.addEventListener(Twitch.Player.READY, madnessqtvinitiate)
+        madnessqtvembed.addEventListener(Twitch.Embed.VIDEO_READY, madnessqtvinitiate)
+    
+        function madnessqtvinitiate() {
+          madnessqtvplayer.addEventListener(Twitch.Player.ONLINE, madnessqtvOnline);
+          madnessqtvplayer.addEventListener(Twitch.Player.OFFLINE, madnessqtvOffline);
+          madnessqtvplayer.removeEventListener(Twitch.Player.READY, madnessqtvinitiate);
+        }
+    
+        function madnessqtvOnline() {
+          document.getElementById("madnessqtv-embed").classList.remove('hide');
+          document.getElementByClass("madnessqtv-embed").classList.add('hide');
+          madnessqtvplayer.removeEventListener(Twitch.Player.ONLINE, madnessqtvOnline);
+          madnessqtvplayer.addEventListener(Twitch.Player.OFFLINE, madnessqtvOffline);
+          madnessqtvplayer.setMuted(false);
+        }
+    
+        function madnessqtvOffline() {
+          document.getElementById("madnessqtv-embed").classList.add('hide');
+          document.getElementByClass("madnessqtv-embed").classList.add('hide');
+          madnessqtvplayer.removeEventListener(Twitch.Player.OFFLINE, madnessqtvOffline);
+          madnessqtvplayer.addEventListener(Twitch.Player.ONLINE, madnessqtvOnline);
+          madnessqtvplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+<div class="mariannewray-embed"></div>
+      <div id="mariannewray-embed"></div>
+      
+      <div class="mariannewray-player"></div>
+      <div id="mariannewray-player"></div>
+
+      <script>
+        var mariannewrayoptions = {
+          channel: "mariannewray",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var mariannewrayplayer = new Twitch.Player("mariannewray-player", mariannewrayoptions);
+        var mariannewrayembed = new Twitch.Embed("mariannewray-embed", mariannewrayoptions);
+        mariannewrayplayer.addEventListener(Twitch.Player.READY, mariannewrayinitiate)
+        mariannewrayembed.addEventListener(Twitch.Embed.VIDEO_READY, mariannewrayinitiate)
+    
+        function mariannewrayinitiate() {
+          mariannewrayplayer.addEventListener(Twitch.Player.ONLINE, mariannewrayOnline);
+          mariannewrayplayer.addEventListener(Twitch.Player.OFFLINE, mariannewrayOffline);
+          mariannewrayplayer.removeEventListener(Twitch.Player.READY, mariannewrayinitiate);
+        }
+    
+        function mariannewrayOnline() {
+          document.getElementById("mariannewray-embed").classList.remove('hide');
+          document.getElementByClass("mariannewray-embed").classList.add('hide');
+          mariannewrayplayer.removeEventListener(Twitch.Player.ONLINE, mariannewrayOnline);
+          mariannewrayplayer.addEventListener(Twitch.Player.OFFLINE, mariannewrayOffline);
+          mariannewrayplayer.setMuted(false);
+        }
+    
+        function mariannewrayOffline() {
+          document.getElementById("mariannewray-embed").classList.add('hide');
+          document.getElementByClass("mariannewray-embed").classList.add('hide');
+          mariannewrayplayer.removeEventListener(Twitch.Player.OFFLINE, mariannewrayOffline);
+          mariannewrayplayer.addEventListener(Twitch.Player.ONLINE, mariannewrayOnline);
+          mariannewrayplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+
+<div class="partysaurusrex123-embed"></div>
+      <div id="partysaurusrex123-embed"></div>
+      
+      <div class="partysaurusrex123-player"></div>
+      <div id="partysaurusrex123-player"></div>
+
+      <script>
+        var partysaurusrex123options = {
+          channel: "partysaurusrex123",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var partysaurusrex123player = new Twitch.Player("partysaurusrex123-player", partysaurusrex123options);
+        var partysaurusrex123embed = new Twitch.Embed("partysaurusrex123-embed", partysaurusrex123options);
+        partysaurusrex123player.addEventListener(Twitch.Player.READY, partysaurusrex123initiate)
+        partysaurusrex123embed.addEventListener(Twitch.Embed.VIDEO_READY, partysaurusrex123initiate)
+    
+        function partysaurusrex123initiate() {
+          partysaurusrex123player.addEventListener(Twitch.Player.ONLINE, partysaurusrex123Online);
+          partysaurusrex123player.addEventListener(Twitch.Player.OFFLINE, partysaurusrex123Offline);
+          partysaurusrex123player.removeEventListener(Twitch.Player.READY, partysaurusrex123initiate);
+        }
+    
+        function partysaurusrex123Online() {
+          document.getElementById("partysaurusrex123-embed").classList.remove('hide');
+          document.getElementByClass("partysaurusrex123-embed").classList.add('hide');
+          partysaurusrex123player.removeEventListener(Twitch.Player.ONLINE, partysaurusrex123Online);
+          partysaurusrex123player.addEventListener(Twitch.Player.OFFLINE, partysaurusrex123Offline);
+          partysaurusrex123player.setMuted(false);
+        }
+    
+        function partysaurusrex123Offline() {
+          document.getElementById("partysaurusrex123-embed").classList.add('hide');
+          document.getElementByClass("partysaurusrex123-embed").classList.add('hide');
+          partysaurusrex123player.removeEventListener(Twitch.Player.OFFLINE, partysaurusrex123Offline);
+          partysaurusrex123player.addEventListener(Twitch.Player.ONLINE, partysaurusrex123Online);
+          partysaurusrex123player.setMuted(true);
+        }
+
+      </script>
+
+
+<div class="r3v3rs3r-embed"></div>
+      <div id="r3v3rs3r-embed"></div>
+      
+      <div class="r3v3rs3r-player"></div>
+      <div id="r3v3rs3r-player"></div>
+
+      <script>
+        var r3v3rs3roptions = {
+          channel: "r3v3rs3r",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var r3v3rs3rplayer = new Twitch.Player("r3v3rs3r-player", r3v3rs3roptions);
+        var r3v3rs3rembed = new Twitch.Embed("r3v3rs3r-embed", r3v3rs3roptions);
+        r3v3rs3rplayer.addEventListener(Twitch.Player.READY, r3v3rs3rinitiate)
+        r3v3rs3rembed.addEventListener(Twitch.Embed.VIDEO_READY, r3v3rs3rinitiate)
+    
+        function r3v3rs3rinitiate() {
+          r3v3rs3rplayer.addEventListener(Twitch.Player.ONLINE, r3v3rs3rOnline);
+          r3v3rs3rplayer.addEventListener(Twitch.Player.OFFLINE, r3v3rs3rOffline);
+          r3v3rs3rplayer.removeEventListener(Twitch.Player.READY, r3v3rs3rinitiate);
+        }
+    
+        function r3v3rs3rOnline() {
+          document.getElementById("r3v3rs3r-embed").classList.remove('hide');
+          document.getElementByClass("r3v3rs3r-embed").classList.add('hide');
+          r3v3rs3rplayer.removeEventListener(Twitch.Player.ONLINE, r3v3rs3rOnline);
+          r3v3rs3rplayer.addEventListener(Twitch.Player.OFFLINE, r3v3rs3rOffline);
+          r3v3rs3rplayer.setMuted(false);
+        }
+    
+        function r3v3rs3rOffline() {
+          document.getElementById("r3v3rs3r-embed").classList.add('hide');
+          document.getElementByClass("r3v3rs3r-embed").classList.add('hide');
+          r3v3rs3rplayer.removeEventListener(Twitch.Player.OFFLINE, r3v3rs3rOffline);
+          r3v3rs3rplayer.addEventListener(Twitch.Player.ONLINE, r3v3rs3rOnline);
+          r3v3rs3rplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+<div class="saltyluk-embed"></div>
+      <div id="saltyluk-embed"></div>
+      
+      <div class="saltyluk-player"></div>
+      <div id="saltyluk-player"></div>
+
+      <script>
+        var saltylukoptions = {
+          channel: "saltyluk",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var saltylukplayer = new Twitch.Player("saltyluk-player", saltylukoptions);
+        var saltylukembed = new Twitch.Embed("saltyluk-embed", saltylukoptions);
+        saltylukplayer.addEventListener(Twitch.Player.READY, saltylukinitiate)
+        saltylukembed.addEventListener(Twitch.Embed.VIDEO_READY, saltylukinitiate)
+    
+        function saltylukinitiate() {
+          saltylukplayer.addEventListener(Twitch.Player.ONLINE, saltylukOnline);
+          saltylukplayer.addEventListener(Twitch.Player.OFFLINE, saltylukOffline);
+          saltylukplayer.removeEventListener(Twitch.Player.READY, saltylukinitiate);
+        }
+    
+        function saltylukOnline() {
+          document.getElementById("saltyluk-embed").classList.remove('hide');
+          document.getElementByClass("saltyluk-embed").classList.add('hide');
+          saltylukplayer.removeEventListener(Twitch.Player.ONLINE, saltylukOnline);
+          saltylukplayer.addEventListener(Twitch.Player.OFFLINE, saltylukOffline);
+          saltylukplayer.setMuted(false);
+        }
+    
+        function saltylukOffline() {
+          document.getElementById("saltyluk-embed").classList.add('hide');
+          document.getElementByClass("saltyluk-embed").classList.add('hide');
+          saltylukplayer.removeEventListener(Twitch.Player.OFFLINE, saltylukOffline);
+          saltylukplayer.addEventListener(Twitch.Player.ONLINE, saltylukOnline);
+          saltylukplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+
+<div class="sold1er56-embed"></div>
+      <div id="sold1er56-embed"></div>
+      
+      <div class="sold1er56-player"></div>
+      <div id="sold1er56-player"></div>
+
+      <script>
+        var sold1er56options = {
+          channel: "sold1er56",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var sold1er56player = new Twitch.Player("sold1er56-player", sold1er56options);
+        var sold1er56embed = new Twitch.Embed("sold1er56-embed", sold1er56options);
+        sold1er56player.addEventListener(Twitch.Player.READY, sold1er56initiate)
+        sold1er56embed.addEventListener(Twitch.Embed.VIDEO_READY, sold1er56initiate)
+    
+        function sold1er56initiate() {
+          sold1er56player.addEventListener(Twitch.Player.ONLINE, sold1er56Online);
+          sold1er56player.addEventListener(Twitch.Player.OFFLINE, sold1er56Offline);
+          sold1er56player.removeEventListener(Twitch.Player.READY, sold1er56initiate);
+        }
+    
+        function sold1er56Online() {
+          document.getElementById("sold1er56-embed").classList.remove('hide');
+          document.getElementByClass("sold1er56-embed").classList.add('hide');
+          sold1er56player.removeEventListener(Twitch.Player.ONLINE, sold1er56Online);
+          sold1er56player.addEventListener(Twitch.Player.OFFLINE, sold1er56Offline);
+          sold1er56player.setMuted(false);
+        }
+    
+        function sold1er56Offline() {
+          document.getElementById("sold1er56-embed").classList.add('hide');
+          document.getElementByClass("sold1er56-embed").classList.add('hide');
+          sold1er56player.removeEventListener(Twitch.Player.OFFLINE, sold1er56Offline);
+          sold1er56player.addEventListener(Twitch.Player.ONLINE, sold1er56Online);
+          sold1er56player.setMuted(true);
+        }
+
+      </script>
+
+
+
+
+<div class="sonza-embed"></div>
+      <div id="sonza-embed"></div>
+      
+      <div class="sonza-player"></div>
+      <div id="sonza-player"></div>
+
+      <script>
+        var sonzaoptions = {
+          channel: "sonza",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var sonzaplayer = new Twitch.Player("sonza-player", sonzaoptions);
+        var sonzaembed = new Twitch.Embed("sonza-embed", sonzaoptions);
+        sonzaplayer.addEventListener(Twitch.Player.READY, sonzainitiate)
+        sonzaembed.addEventListener(Twitch.Embed.VIDEO_READY, sonzainitiate)
+    
+        function sonzainitiate() {
+          sonzaplayer.addEventListener(Twitch.Player.ONLINE, sonzaOnline);
+          sonzaplayer.addEventListener(Twitch.Player.OFFLINE, sonzaOffline);
+          sonzaplayer.removeEventListener(Twitch.Player.READY, sonzainitiate);
+        }
+    
+        function sonzaOnline() {
+          document.getElementById("sonza-embed").classList.remove('hide');
+          document.getElementByClass("sonza-embed").classList.add('hide');
+          sonzaplayer.removeEventListener(Twitch.Player.ONLINE, sonzaOnline);
+          sonzaplayer.addEventListener(Twitch.Player.OFFLINE, sonzaOffline);
+          sonzaplayer.setMuted(false);
+        }
+    
+        function sonzaOffline() {
+          document.getElementById("sonza-embed").classList.add('hide');
+          document.getElementByClass("sonza-embed").classList.add('hide');
+          sonzaplayer.removeEventListener(Twitch.Player.OFFLINE, sonzaOffline);
+          sonzaplayer.addEventListener(Twitch.Player.ONLINE, sonzaOnline);
+          sonzaplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+<div class="proto_peach-embed"></div>
+      <div id="proto_peach-embed"></div>
+      
+      <div class="proto_peach-player"></div>
+      <div id="proto_peach-player"></div>
+
+      <script>
+        var proto_peachoptions = {
+          channel: "proto_peach",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var proto_peachplayer = new Twitch.Player("proto_peach-player", proto_peachoptions);
+        var proto_peachembed = new Twitch.Embed("proto_peach-embed", proto_peachoptions);
+        proto_peachplayer.addEventListener(Twitch.Player.READY, proto_peachinitiate)
+        proto_peachembed.addEventListener(Twitch.Embed.VIDEO_READY, proto_peachinitiate)
+    
+        function proto_peachinitiate() {
+          proto_peachplayer.addEventListener(Twitch.Player.ONLINE, proto_peachOnline);
+          proto_peachplayer.addEventListener(Twitch.Player.OFFLINE, proto_peachOffline);
+          proto_peachplayer.removeEventListener(Twitch.Player.READY, proto_peachinitiate);
+        }
+    
+        function proto_peachOnline() {
+          document.getElementById("proto_peach-embed").classList.remove('hide');
+          document.getElementByClass("proto_peach-embed").classList.add('hide');
+          proto_peachplayer.removeEventListener(Twitch.Player.ONLINE, proto_peachOnline);
+          proto_peachplayer.addEventListener(Twitch.Player.OFFLINE, proto_peachOffline);
+          proto_peachplayer.setMuted(false);
+        }
+    
+        function proto_peachOffline() {
+          document.getElementById("proto_peach-embed").classList.add('hide');
+          document.getElementByClass("proto_peach-embed").classList.add('hide');
+          proto_peachplayer.removeEventListener(Twitch.Player.OFFLINE, proto_peachOffline);
+          proto_peachplayer.addEventListener(Twitch.Player.ONLINE, proto_peachOnline);
+          proto_peachplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+<div class="xxtowerdogxx-embed"></div>
+      <div id="xxtowerdogxx-embed"></div>
+      
+      <div class="xxtowerdogxx-player"></div>
+      <div id="xxtowerdogxx-player"></div>
+
+      <script>
+        var xxtowerdogxxoptions = {
+          channel: "xxtowerdogxx",
+          width: 340,
+          height: 400,
+          layout: "video-with-chat",
+          theme: "dark",
+          parent: [
+            "glitch.com",
+            "xstarwake.org",
+            "www.xstarwake.org",
+            "www-xstarwake-org.glitch.me",
+            "localhost",
+          ],
+        };
+      
+        var xxtowerdogxxplayer = new Twitch.Player("xxtowerdogxx-player", xxtowerdogxxoptions);
+        var xxtowerdogxxembed = new Twitch.Embed("xxtowerdogxx-embed", xxtowerdogxxoptions);
+        xxtowerdogxxplayer.addEventListener(Twitch.Player.READY, xxtowerdogxxinitiate)
+        xxtowerdogxxembed.addEventListener(Twitch.Embed.VIDEO_READY, xxtowerdogxxinitiate)
+    
+        function xxtowerdogxxinitiate() {
+          xxtowerdogxxplayer.addEventListener(Twitch.Player.ONLINE, xxtowerdogxxOnline);
+          xxtowerdogxxplayer.addEventListener(Twitch.Player.OFFLINE, xxtowerdogxxOffline);
+          xxtowerdogxxplayer.removeEventListener(Twitch.Player.READY, xxtowerdogxxinitiate);
+        }
+    
+        function xxtowerdogxxOnline() {
+          document.getElementById("xxtowerdogxx-embed").classList.remove('hide');
+          document.getElementByClass("xxtowerdogxx-embed").classList.add('hide');
+          xxtowerdogxxplayer.removeEventListener(Twitch.Player.ONLINE, xxtowerdogxxOnline);
+          xxtowerdogxxplayer.addEventListener(Twitch.Player.OFFLINE, xxtowerdogxxOffline);
+          xxtowerdogxxplayer.setMuted(false);
+        }
+    
+        function xxtowerdogxxOffline() {
+          document.getElementById("xxtowerdogxx-embed").classList.add('hide');
+          document.getElementByClass("xxtowerdogxx-embed").classList.add('hide');
+          xxtowerdogxxplayer.removeEventListener(Twitch.Player.OFFLINE, xxtowerdogxxOffline);
+          xxtowerdogxxplayer.addEventListener(Twitch.Player.ONLINE, xxtowerdogxxOnline);
+          xxtowerdogxxplayer.setMuted(true);
+        }
+
+      </script>
+
+
+
+
+
+    </body>
 </html>
