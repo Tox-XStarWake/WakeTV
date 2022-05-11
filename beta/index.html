@@ -118,10 +118,6 @@
 
       </script>
 
-      <div class="spacemages-embed"></div>
-      <div id="spacemages-embed"></div>
-      
-      <div class="spacemages-player"></div>
       <div id="spacemages-player"></div>
 
       <script>
@@ -141,9 +137,8 @@
         };
       
         var spacemagesplayer = new Twitch.Player("spacemages-player", spacemagesoptions);
-        var spacemagesembed = new Twitch.Embed("spacemages-embed", spacemagesoptions);
         spacemagesplayer.addEventListener(Twitch.Player.READY, spacemagesinitiate)
-        spacemagesembed.addEventListener(Twitch.Embed.VIDEO_READY, spacemagesinitiate)
+        spacemagesembed.addEventListener(Twitch.Player.VIDEO_READY, spacemagesinitiate)
     
         function spacemagesinitiate() {
           spacemagesplayer.addEventListener(Twitch.Player.ONLINE, spacemagesOnline);
@@ -152,16 +147,14 @@
         }
     
         function spacemagesOnline() {
-          document.getElementById("spacemages-embed").classList.remove('hide');
-          document.getElementByClass("spacemages-embed").classList.add('hide');
+          document.getElementById("spacemages-player").classList.remove('hide');
           spacemagesplayer.removeEventListener(Twitch.Player.ONLINE, spacemagesOnline);
           spacemagesplayer.addEventListener(Twitch.Player.OFFLINE, spacemagesOffline);
           spacemagesplayer.setMuted(false);
         }
     
         function spacemagesOffline() {
-          document.getElementById("spacemages-embed").classList.add('hide');
-          document.getElementByClass("spacemages-embed").classList.add('hide');
+          document.getElementById("spacemages-player").classList.add('hide');
           spacemagesplayer.removeEventListener(Twitch.Player.OFFLINE, spacemagesOffline);
           spacemagesplayer.addEventListener(Twitch.Player.ONLINE, spacemagesOnline);
           spacemagesplayer.setMuted(true);
@@ -169,10 +162,6 @@
 
       </script>
 
-      <div class="chefduckie-embed"></div>
-      <div id="chefduckie-embed"></div>
-      
-      <div class="chefduckie-player"></div>
       <div id="chefduckie-player"></div>
 
       <script>
@@ -192,9 +181,8 @@
         };
       
         var chefduckieplayer = new Twitch.Player("chefduckie-player", chefduckieoptions);
-        var chefduckieembed = new Twitch.Embed("chefduckie-embed", chefduckieoptions);
         chefduckieplayer.addEventListener(Twitch.Player.READY, chefduckieinitiate)
-        chefduckieembed.addEventListener(Twitch.Embed.VIDEO_READY, chefduckieinitiate)
+        chefduckieembed.addEventListener(Twitch.Player.VIDEO_READY, chefduckieinitiate)
     
         function chefduckieinitiate() {
           chefduckieplayer.addEventListener(Twitch.Player.ONLINE, chefduckieOnline);
@@ -203,16 +191,14 @@
         }
     
         function chefduckieOnline() {
-          document.getElementById("chefduckie-embed").classList.remove('hide');
-          document.getElementByClass("chefduckie-embed").classList.add('hide');
+          document.getElementById("chefduckie-player").classList.remove('hide');
           chefduckieplayer.removeEventListener(Twitch.Player.ONLINE, chefduckieOnline);
           chefduckieplayer.addEventListener(Twitch.Player.OFFLINE, chefduckieOffline);
           chefduckieplayer.setMuted(false);
         }
     
         function chefduckieOffline() {
-          document.getElementById("chefduckie-embed").classList.add('hide');
-          document.getElementByClass("chefduckie-embed").classList.add('hide');
+          document.getElementById("chefduckie-player").classList.add('hide');
           chefduckieplayer.removeEventListener(Twitch.Player.OFFLINE, chefduckieOffline);
           chefduckieplayer.addEventListener(Twitch.Player.ONLINE, chefduckieOnline);
           chefduckieplayer.setMuted(true);
@@ -220,10 +206,6 @@
 
       </script>
 
-<div class="deadinthescene-embed"></div>
-<div id="deadinthescene-embed"></div>
-
-<div class="deadinthescene-player"></div>
 <div id="deadinthescene-player"></div>
 
 <script>
@@ -243,9 +225,8 @@
   };
 
   var deadinthesceneplayer = new Twitch.Player("deadinthescene-player", deadinthesceneoptions);
-  var deadinthesceneembed = new Twitch.Embed("deadinthescene-embed", deadinthesceneoptions);
   deadinthesceneplayer.addEventListener(Twitch.Player.READY, deadinthesceneinitiate)
-  deadinthesceneembed.addEventListener(Twitch.Embed.VIDEO_READY, deadinthesceneinitiate)
+  deadinthesceneembed.addEventListener(Twitch.Player.VIDEO_READY, deadinthesceneinitiate)
 
   function deadinthesceneinitiate() {
     deadinthesceneplayer.addEventListener(Twitch.Player.ONLINE, deadinthesceneOnline);
@@ -254,16 +235,14 @@
   }
 
   function deadinthesceneOnline() {
-    document.getElementById("deadinthescene-embed").classList.remove('hide');
-    document.getElementByClass("deadinthescene-embed").classList.add('hide');
+    document.getElementById("deadinthescene-player").classList.remove('hide');
     deadinthesceneplayer.removeEventListener(Twitch.Player.ONLINE, deadinthesceneOnline);
     deadinthesceneplayer.addEventListener(Twitch.Player.OFFLINE, deadinthesceneOffline);
     deadinthesceneplayer.setMuted(false);
   }
 
   function deadinthesceneOffline() {
-    document.getElementById("deadinthescene-embed").classList.add('hide');
-    document.getElementByClass("deadinthescene-embed").classList.add('hide');
+    document.getElementById("deadinthescene-player").classList.add('hide');
     deadinthesceneplayer.removeEventListener(Twitch.Player.OFFLINE, deadinthesceneOffline);
     deadinthesceneplayer.addEventListener(Twitch.Player.ONLINE, deadinthesceneOnline);
     deadinthesceneplayer.setMuted(true);
@@ -271,11 +250,6 @@
 
 </script>
 
-
-<div class="doubleknees-embed"></div>
-<div id="doubleknees-embed"></div>
-
-<div class="doubleknees-player"></div>
 <div id="doubleknees-player"></div>
 
 <script>
@@ -295,9 +269,8 @@
   };
 
   var doublekneesplayer = new Twitch.Player("doubleknees-player", doublekneesoptions);
-  var doublekneesembed = new Twitch.Embed("doubleknees-embed", doublekneesoptions);
   doublekneesplayer.addEventListener(Twitch.Player.READY, doublekneesinitiate)
-  doublekneesembed.addEventListener(Twitch.Embed.VIDEO_READY, doublekneesinitiate)
+  doublekneesembed.addEventListener(Twitch.Player.VIDEO_READY, doublekneesinitiate)
 
   function doublekneesinitiate() {
     doublekneesplayer.addEventListener(Twitch.Player.ONLINE, doublekneesOnline);
@@ -306,16 +279,14 @@
   }
 
   function doublekneesOnline() {
-    document.getElementById("doubleknees-embed").classList.remove('hide');
-    document.getElementByClass("doubleknees-embed").classList.add('hide');
+    document.getElementById("doubleknees-player").classList.remove('hide');
     doublekneesplayer.removeEventListener(Twitch.Player.ONLINE, doublekneesOnline);
     doublekneesplayer.addEventListener(Twitch.Player.OFFLINE, doublekneesOffline);
     doublekneesplayer.setMuted(false);
   }
 
   function doublekneesOffline() {
-    document.getElementById("doubleknees-embed").classList.add('hide');
-    document.getElementByClass("doubleknees-embed").classList.add('hide');
+    document.getElementById("doubleknees-player").classList.add('hide');
     doublekneesplayer.removeEventListener(Twitch.Player.OFFLINE, doublekneesOffline);
     doublekneesplayer.addEventListener(Twitch.Player.ONLINE, doublekneesOnline);
     doublekneesplayer.setMuted(true);
@@ -323,11 +294,6 @@
 
 </script>
 
-
-<div class="fearsumbeard-embed"></div>
-<div id="fearsumbeard-embed"></div>
-
-<div class="fearsumbeard-player"></div>
 <div id="fearsumbeard-player"></div>
 
 <script>
@@ -347,9 +313,8 @@
   };
 
   var fearsumbeardplayer = new Twitch.Player("fearsumbeard-player", fearsumbeardoptions);
-  var fearsumbeardembed = new Twitch.Embed("fearsumbeard-embed", fearsumbeardoptions);
   fearsumbeardplayer.addEventListener(Twitch.Player.READY, fearsumbeardinitiate)
-  fearsumbeardembed.addEventListener(Twitch.Embed.VIDEO_READY, fearsumbeardinitiate)
+  fearsumbeardembed.addEventListener(Twitch.Player.VIDEO_READY, fearsumbeardinitiate)
 
   function fearsumbeardinitiate() {
     fearsumbeardplayer.addEventListener(Twitch.Player.ONLINE, fearsumbeardOnline);
@@ -358,16 +323,14 @@
   }
 
   function fearsumbeardOnline() {
-    document.getElementById("fearsumbeard-embed").classList.remove('hide');
-    document.getElementByClass("fearsumbeard-embed").classList.add('hide');
+    document.getElementById("fearsumbeard-player").classList.remove('hide');
     fearsumbeardplayer.removeEventListener(Twitch.Player.ONLINE, fearsumbeardOnline);
     fearsumbeardplayer.addEventListener(Twitch.Player.OFFLINE, fearsumbeardOffline);
     fearsumbeardplayer.setMuted(false);
   }
 
   function fearsumbeardOffline() {
-    document.getElementById("fearsumbeard-embed").classList.add('hide');
-    document.getElementByClass("fearsumbeard-embed").classList.add('hide');
+    document.getElementById("fearsumbeard-player").classList.add('hide');
     fearsumbeardplayer.removeEventListener(Twitch.Player.OFFLINE, fearsumbeardOffline);
     fearsumbeardplayer.addEventListener(Twitch.Player.ONLINE, fearsumbeardOnline);
     fearsumbeardplayer.setMuted(true);
