@@ -1,0 +1,346 @@
+/*
+
+.day   { background: #eee; color: black; }
+.night { background: #333; color: white; }
+
+@media (prefers-color-scheme: dark) {
+  .day.dark-scheme   { background:  #333; color: white; }
+  .night.dark-scheme { background: black; color:  #ddd; }
+}
+
+@media (prefers-color-scheme: light) {
+  .day.light-scheme   { background: white; color:  #555; }
+  .night.light-scheme { background:  #eee; color: black; }
+}
+
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("http://www.xstarwake.org/img/wave_background_dark.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-color: #000000;
+    font-family: 'Tahoma', sans-serif;
+    color: #000080;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    font-style: normal;
+    line-height: 50px;
+    margin: 0 0 15px 0;
+    text-align: left;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    line-height: 24px;
+    margin: 0 0 10px 0;
+    text-align: left;
+    text-transform: uppercase;
+    color: #aa0101;
+}
+
+h3 {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    line-height: 14px;
+    margin: 0 0 10px 0;
+    text-align: left;
+    text-transform: uppercase;
+    color: #cccccc;
+}
+
+.hide { 
+    display: none; 
+}
+
+#twitch-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block
+}
+
+.twitch-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+
+.xstarwake-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+#toxic__salt-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+#toxic__salt-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.toxic__salt-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+.toxic__salt-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#annaomaly-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+#annaomaly-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.annaomaly-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+.annaomaly-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#chefduckie-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+#chefduckie-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.chefduckie-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+.chefduckie-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#dany3lll3-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+#dany3lll3-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.dany3lll3-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+.dany3lll3-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#deadinthescene-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+#deadinthescene-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.deadinthescene-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+.deadinthescene-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#demispooks-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+#demispooks-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.demispooks-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+.demispooks-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#doubleknees-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+#doubleknees-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.doubleknees-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+.doubleknees-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+#fearsumbeard-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+#fearsumbeard-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
+.fearsumbeard-embed {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: inline-block;
+}
+
+.fearsumbeard-player {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    display: none;
+}
+
