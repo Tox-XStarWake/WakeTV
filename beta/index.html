@@ -29,7 +29,7 @@
 
     <body>
       
-      <div class="twitch-player" id="xstarwake-player"></div>
+      <div id="xstarwake-player"></div>
 
       <script>
         var xstarwakeoptions = {
@@ -59,6 +59,7 @@
     
         function xstarwakeOnline() {
           document.getElementById("xstarwake-player").classList.remove('hide');
+          document.getElementById("xstarwake-player").classList.add('show');
           xstarwakeplayer.removeEventListener(Twitch.Player.ONLINE, xstarwakeOnline);
           xstarwakeplayer.addEventListener(Twitch.Player.OFFLINE, xstarwakeOffline);
           xstarwakeplayer.setMuted(false);
@@ -66,6 +67,7 @@
     
         function xstarwakeOffline() {
           document.getElementById("xstarwake-player").classList.add('hide');
+          document.getElementById("xstarwake-player").classList.remove('show');
           xstarwakeplayer.removeEventListener(Twitch.Player.OFFLINE, xstarwakeOffline);
           xstarwakeplayer.addEventListener(Twitch.Player.ONLINE, xstarwakeOnline);
           xstarwakeplayer.setMuted(true);
@@ -73,7 +75,7 @@
 
       </script>
 
-<div class="twitch-player" id="toxic__salt-player"></div>
+<div id="toxic__salt-player"></div>
 
       <script>
         var toxic__saltoptions = {
@@ -103,6 +105,7 @@
     
         function toxic__saltOnline() {
           document.getElementById("toxic__salt-player").classList.remove('hide');
+          document.getElementById("toxic__salt-player").classList.add('show');
           toxic__saltplayer.removeEventListener(Twitch.Player.ONLINE, toxic__saltOnline);
           toxic__saltplayer.addEventListener(Twitch.Player.OFFLINE, toxic__saltOffline);
           toxic__saltplayer.setMuted(false);
@@ -110,6 +113,7 @@
     
         function toxic__saltOffline() {
           document.getElementById("toxic__salt-player").classList.add('hide');
+          document.getElementById("toxic__salt-player").classList.remove('show');
           toxic__saltplayer.removeEventListener(Twitch.Player.OFFLINE, toxic__saltOffline);
           toxic__saltplayer.addEventListener(Twitch.Player.ONLINE, toxic__saltOnline);
           toxic__saltplayer.setMuted(true);
@@ -117,7 +121,7 @@
 
       </script>
 
-<div class="twitch-player" id="spacemages-player"></div>
+<div id="spacemages-player"></div>
 
       <script>
         var spacemagesoptions = {
@@ -147,6 +151,7 @@
     
         function spacemagesOnline() {
           document.getElementById("spacemages-player").classList.remove('hide');
+          document.getElementById("spacemages-player").classList.add('show');
           spacemagesplayer.removeEventListener(Twitch.Player.ONLINE, spacemagesOnline);
           spacemagesplayer.addEventListener(Twitch.Player.OFFLINE, spacemagesOffline);
           spacemagesplayer.setMuted(false);
@@ -154,6 +159,7 @@
     
         function spacemagesOffline() {
           document.getElementById("spacemages-player").classList.add('hide');
+          document.getElementById("spacemages-player").classList.remove('show');
           spacemagesplayer.removeEventListener(Twitch.Player.OFFLINE, spacemagesOffline);
           spacemagesplayer.addEventListener(Twitch.Player.ONLINE, spacemagesOnline);
           spacemagesplayer.setMuted(true);
@@ -161,7 +167,7 @@
 
       </script>
 
-<div class="twitch-player" id="chefduckie-player"></div>
+<div id="chefduckie-player"></div>
 
       <script>
         var chefduckieoptions = {
@@ -191,6 +197,7 @@
     
         function chefduckieOnline() {
           document.getElementById("chefduckie-player").classList.remove('hide');
+          document.getElementById("chefduckie-player").classList.add('show');
           chefduckieplayer.removeEventListener(Twitch.Player.ONLINE, chefduckieOnline);
           chefduckieplayer.addEventListener(Twitch.Player.OFFLINE, chefduckieOffline);
           chefduckieplayer.setMuted(false);
@@ -198,6 +205,7 @@
     
         function chefduckieOffline() {
           document.getElementById("chefduckie-player").classList.add('hide');
+          document.getElementById("chefduckie-player").classList.remove('show');
           chefduckieplayer.removeEventListener(Twitch.Player.OFFLINE, chefduckieOffline);
           chefduckieplayer.addEventListener(Twitch.Player.ONLINE, chefduckieOnline);
           chefduckieplayer.setMuted(true);
@@ -205,7 +213,7 @@
 
       </script>
 
-<div class="twitch-player" id="deadinthescene-player"></div>
+<div id="deadinthescene-player"></div>
 
 <script>
   var deadinthesceneoptions = {
@@ -235,6 +243,7 @@
 
   function deadinthesceneOnline() {
     document.getElementById("deadinthescene-player").classList.remove('hide');
+    document.getElementById("deadinthescene-player").classList.add('show');
     deadinthesceneplayer.removeEventListener(Twitch.Player.ONLINE, deadinthesceneOnline);
     deadinthesceneplayer.addEventListener(Twitch.Player.OFFLINE, deadinthesceneOffline);
     deadinthesceneplayer.setMuted(false);
@@ -242,6 +251,7 @@
 
   function deadinthesceneOffline() {
     document.getElementById("deadinthescene-player").classList.add('hide');
+    document.getElementById("deadinthescene-player").classList.remove('show');
     deadinthesceneplayer.removeEventListener(Twitch.Player.OFFLINE, deadinthesceneOffline);
     deadinthesceneplayer.addEventListener(Twitch.Player.ONLINE, deadinthesceneOnline);
     deadinthesceneplayer.setMuted(true);
@@ -249,7 +259,7 @@
 
 </script>
 
-<div class="twitch-player" id="doubleknees-player"></div>
+<div id="doubleknees-player"></div>
 
 <script>
   var doublekneesoptions = {
@@ -279,6 +289,7 @@
 
   function doublekneesOnline() {
     document.getElementById("doubleknees-player").classList.remove('hide');
+    document.getElementById("doubleknees-player").classList.add('show');
     doublekneesplayer.removeEventListener(Twitch.Player.ONLINE, doublekneesOnline);
     doublekneesplayer.addEventListener(Twitch.Player.OFFLINE, doublekneesOffline);
     doublekneesplayer.setMuted(false);
@@ -286,6 +297,7 @@
 
   function doublekneesOffline() {
     document.getElementById("doubleknees-player").classList.add('hide');
+    document.getElementById("doubleknees-player").classList.remove('show');
     doublekneesplayer.removeEventListener(Twitch.Player.OFFLINE, doublekneesOffline);
     doublekneesplayer.addEventListener(Twitch.Player.ONLINE, doublekneesOnline);
     doublekneesplayer.setMuted(true);
@@ -293,7 +305,7 @@
 
 </script>
 
-<div class="twitch-player" id="fearsumbeard-player"></div>
+<div id="fearsumbeard-player"></div>
 
 <script>
   var fearsumbeardoptions = {
@@ -323,6 +335,7 @@
 
   function fearsumbeardOnline() {
     document.getElementById("fearsumbeard-player").classList.remove('hide');
+    document.getElementById("fearsumbeard-player").classList.add('show');
     fearsumbeardplayer.removeEventListener(Twitch.Player.ONLINE, fearsumbeardOnline);
     fearsumbeardplayer.addEventListener(Twitch.Player.OFFLINE, fearsumbeardOffline);
     fearsumbeardplayer.setMuted(false);
@@ -330,6 +343,7 @@
 
   function fearsumbeardOffline() {
     document.getElementById("fearsumbeard-player").classList.add('hide');
+    document.getElementById("fearsumbeard-player").classList.remove('show');
     fearsumbeardplayer.removeEventListener(Twitch.Player.OFFLINE, fearsumbeardOffline);
     fearsumbeardplayer.addEventListener(Twitch.Player.ONLINE, fearsumbeardOnline);
     fearsumbeardplayer.setMuted(true);

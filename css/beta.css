@@ -64,14 +64,13 @@ h3 {
     /*
     display: none; 
     */
+    display:inline-block; 
     padding-left: 1px;
 }
 
-#twitch-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    display: inline-block
+.show { 
+    display:inline-block; 
+    padding-left: 1px;
 }
 
 .xstarwake-player {
