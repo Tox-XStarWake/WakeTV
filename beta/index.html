@@ -28,7 +28,18 @@
     </head>
 
     <body>
-      
+
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+      <script type="text/javascript">
+      $(function(){
+          $('#xstarwake-button').click(function(){ 
+              if(!$('#xstarwake_iframe').length) {
+                      $('#xstarwake-player').html('<iframe id="xstarwake_iframe" src="https://www.twitch.tv/embed/xstarwake/chat?parent=www.xstarwake.org" width="340" height="400"></iframe>');
+              }
+          });   
+      });
+      </script>
+       
       <div id="xstarwake-player">
         <button type="button" id="xstarwake-button" onclick="xstarwake_chat()">XStarWake Chat</button>
       </div>
