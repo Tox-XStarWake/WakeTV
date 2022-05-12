@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://www.xstarwake.org/css/beta.css">
 
         <!-- <script type="module" src="js/viewer.js"></script> -->
-        <script type="text/javascript" src="https://www.xstarwake.org/js/test.js"></script>
+        <script type="text/javascript" src="https://www.xstarwake.org/js/beta.js"></script>
         <script type="text/javascript" src="https://embed.twitch.tv/embed/v1.js"></script>
 
         <script>
@@ -30,10 +30,12 @@
     <body>
       
       <div id="xstarwake-player">
+        <button type="button" id="xstarwake-button" onclick="starwake_chat">XStarWake Chat</button>
         <iframe id="xstarwake-chat-embed"
           src="https://www.twitch.tv/embed/xstarwake/chat?parent=www.xstarwake.org"
           width="340"
-          height="400">
+          height="400"
+          >
         </iframe>
       </div>
 
