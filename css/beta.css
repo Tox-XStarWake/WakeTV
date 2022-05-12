@@ -70,6 +70,13 @@ h3 {
     padding-left: 1px;
 }
 
+#inline-button {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    display:inline-block; 
+}
+
 .xstarwake-player {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
