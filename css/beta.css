@@ -83,6 +83,13 @@ h3 {
     display:inline-block; 
 }
 
+.xstarwake-button {
+    position: relative;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+    display:inline-block; 
+}
+
 .toxic__salt-player {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
