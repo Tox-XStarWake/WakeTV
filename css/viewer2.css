@@ -1,20 +1,3 @@
-/*
-
-.day   { background: #eee; color: black; }
-.night { background: #333; color: white; }
-
-@media (prefers-color-scheme: dark) {
-  .day.dark-scheme   { background:  #333; color: white; }
-  .night.dark-scheme { background: black; color:  #ddd; }
-}
-
-@media (prefers-color-scheme: light) {
-  .day.light-scheme   { background: white; color:  #555; }
-  .night.light-scheme { background:  #eee; color: black; }
-}
-
-*/
-
 body {
     margin: 0;
     padding: 0;
@@ -70,31 +53,10 @@ h3 {
     padding-left: 1px;
 }
 
-#inline-button {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    display: inline-block; 
-}
-
 .xstarwake-player {
     position: relative;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-}
-
-.xstarwake-chat {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    display:inline-block; 
-}
-
-.xstarwake-button {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    display:inline-block; 
 }
 
 .toxic__salt-player {
