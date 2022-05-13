@@ -8,6 +8,7 @@ body {
     background-color: #000000;
     font-family: 'Tahoma', sans-serif;
     color: #000080;
+    display: flex;
 }
 
 h1 {
@@ -18,7 +19,7 @@ h1 {
     margin: 0 0 15px 0;
     text-align: left;
     text-transform: uppercase;
-    color: #fff;
+    color: #ffffff;
 }
 
 h2 {
@@ -45,11 +46,12 @@ h3 {
 
 .hide { 
     display: none; 
+    visibility: hidden;
     padding-left: 1px;
 }
 
 .show { 
-    display: inline-block; 
+    display: flex; 
     padding-left: 1px;
 }
 
