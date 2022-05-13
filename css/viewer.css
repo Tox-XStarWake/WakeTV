@@ -1,30 +1,16 @@
-/*
-
-.day   { background: #eee; color: black; }
-.night { background: #333; color: white; }
-
-@media (prefers-color-scheme: dark) {
-  .day.dark-scheme   { background:  #333; color: white; }
-  .night.dark-scheme { background: black; color:  #ddd; }
-}
-
-@media (prefers-color-scheme: light) {
-  .day.light-scheme   { background: white; color:  #555; }
-  .night.light-scheme { background:  #eee; color: black; }
-}
-
-*/
-
 body {
     margin: 0;
     padding: 0;
-    background-image: url("http://www.xstarwake.org/img/wave_background_dark.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image: url("http://www.xstarwake.org/img/Patreon_BG.jpg"), url("http://www.xstarwake.org/img/wave_background_dark.png");
+    background-position: left top, left bottom;
+    background-repeat: no-repeat, repeat;
+    background-attachment: fixed, scroll;
     background-size: 100%;
     background-color: #000000;
     font-family: 'Tahoma', sans-serif;
     color: #000080;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 h1 {
@@ -35,7 +21,7 @@ h1 {
     margin: 0 0 15px 0;
     text-align: left;
     text-transform: uppercase;
-    color: #fff;
+    color: #ffffff;
 }
 
 h2 {
@@ -63,1106 +49,263 @@ h3 {
 .hide { 
     display: none; 
     visibility: hidden;
+    padding-left: 1px;
 }
 
-#twitch {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-}
-
-#twitch object, #twitch iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 50%;
-}
-
-#twitch-embed {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-}
-
-#twitch-player {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none; 
-}
-
-.twitch-embed {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-}
-
-.twitch-player {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none; 
-}
-
-#xstarwake-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#xstarwake-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.xstarwake-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
+.show { 
+    display: flex; 
+    flex-wrap: wrap;
+    padding-left: 1px;
 }
 
 .xstarwake-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#toxic__salt-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#toxic__salt-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.toxic__salt-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .toxic__salt-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#annaomaly-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#annaomaly-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.annaomaly-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .annaomaly-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#chefduckie-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#chefduckie-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.chefduckie-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .chefduckie-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#dany3lll3-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#dany3lll3-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.dany3lll3-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .dany3lll3-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#deadinthescene-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#deadinthescene-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.deadinthescene-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .deadinthescene-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#demispooks-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#demispooks-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.demispooks-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .demispooks-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#doubleknees-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#doubleknees-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.doubleknees-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .doubleknees-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#fearsumbeard-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#fearsumbeard-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.fearsumbeard-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .fearsumbeard-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#icetigerzone-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#icetigerzone-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.icetigerzone-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.icetigerzone-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#jazzthegaymer-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#jazzthegaymer-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.jazzthegaymer-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.jazzthegaymer-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#jokerknowsbest-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#jokerknowsbest-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.jokerknowsbest-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.jokerknowsbest-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#kelling101-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#kelling101-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.kelling101-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .kelling101-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#kiswhale_pwns-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#kiswhale_pwns-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.kiswhale_pwns-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.kiswhale_pwns-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#laxqc-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#laxqc-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.laxqc-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.laxqc-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#lkwilli-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#lkwilli-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.lkwilli-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .lkwilli-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#luminiousdbd-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#luminiousdbd-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.luminiousdbd-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.luminiousdbd-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#madnessqtv-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#madnessqtv-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.madnessqtv-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.madnessqtv-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#mariannewray-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#mariannewray-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.mariannewray-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .mariannewray-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#mini_devil69-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#mini_devil69-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.mini_devil69-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .mini_devil69-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#partysaurusrex123-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#partysaurusrex123-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.partysaurusrex123-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.partysaurusrex123-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#proto_peach-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#proto_peach-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.proto_peach-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.proto_peach-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#r3v3rs3r-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#r3v3rs3r-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.r3v3rs3r-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.r3v3rs3r-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#saltyluk-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#saltyluk-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.saltyluk-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.saltyluk-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#skaterwax-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#skaterwax-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.skaterwax-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.skaterwax-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#sksgodofgames-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#sksgodofgames-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.sksgodofgames-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.sksgodofgames-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#skylarpuppy-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#skylarpuppy-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.skylarpuppy-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.skylarpuppy-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#sold1er56-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#sold1er56-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.sold1er56-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.sold1er56-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#sonza-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#sonza-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.sonza-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.sonza-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#spacemages-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#spacemages-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.spacemages-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.spacemages-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#theelphyys-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#theelphyys-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.theelphyys-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-.theelphyys-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-#toastythabrave-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
-}
-
-#toastythabrave-player {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: none;
-}
-
-.toastythabrave-embed {
-    position: relative;
-    padding-bottom: 16.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
 .toastythabrave-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
 }
 
-#xxtowerdogxx-embed {
+.theelphyys-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: inline-block;
 }
 
-#xxtowerdogxx-player {
+.dany3lll3-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
 }
 
-.xxtowerdogxx-embed {
+.sksgodofgames-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: inline-block;
+}
+
+.skylarpuppy-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.skaterwax-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.annaomaly-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.demispooks-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.icetigerzone-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.jazzthegaymer-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.jokerknowsbest-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.kiswhale_pwns-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.laxqc-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.luminiousdbd-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.madnessqtv-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.mariannewray-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.partysaurusrex123-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.r3v3rs3r-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.saltyluk-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.sold1er56-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.sonza-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
+}
+
+.proto_peach-player {
+    position: relative;
+    width: 340;
+    padding-bottom: 16.25%; /* 16:9 */
+    padding-top: 25px;
 }
 
 .xxtowerdogxx-player {
     position: relative;
+    width: 340;
     padding-bottom: 16.25%; /* 16:9 */
     padding-top: 25px;
-    height: 0;
-    display: none;
 }
-
