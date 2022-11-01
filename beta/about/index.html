@@ -17,6 +17,15 @@
             height: 100%;
         }
 
+        h1 {
+            font-size: 1.2em;
+        }
+
+        h2 {
+            font-size: 1em;
+            color: #666;
+        }
+
         footer {
             color: white;
         }
@@ -41,12 +50,11 @@
 
 <body>
 
-
     <div class="container h-100">
 
         <div class="row h-100 justify-content-center align-items-center">
 
-            <div class="col-8">
+            <div class="col-6">
 
                 <div class="row mb-4">
                     <div class="col text-center">
@@ -54,17 +62,22 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-center align-items-center text-center">
-                    <div id="demos" class="btn-group" role="group" aria-label="Basic example">
-                        <a class="btn btn-outline-light" href="/heatmap/">Heat</a>
-                        <a class="btn btn-outline-light" href="/markers/">Markers</a>
-                        <a class="btn btn-outline-light" href="/kissingbooth/">Kiss</a>
-                        <a class="btn btn-outline-light" href="/sequence/">Sequence</a>
-                        <a class="btn btn-outline-light" href="/baby/">Baby</a>
-                        <a class="btn btn-outline-light" href="/paint/">Paint</a>
-                        <a class="btn btn-outline-light" href="/vote/">Vote</a>
-                        <!-- <a class="btn btn-outline-light" href="/warp/">Warp</a>
-                        <a class="btn btn-outline-light" href="/pixel/">Pixel</a> -->
+                <div class="row justify-content-center align-items-center">
+                    <div class="col card">
+
+                        <div class="card-body">
+                            <h1>About Heat</h1>
+                            <hr />
+
+                            <p class="card-text">
+                                Heat is a Twitch Extension that allows for user engagement through clicking directly on
+                                the video. It was created by <a href="https://www.scottmadethis.net/">Scott Garner</a>
+                                for the Twitch AWS Extensions Challenge. </p>
+
+                            <p><a href="https://github.com/scottgarner/Heat/wiki/" class="card-link">&raquo;
+                                    Learn More from the Heat Wiki</a></p>
+                        </div>
+
                     </div>
                 </div>
 
@@ -85,22 +98,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"
         integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp"
         crossorigin="anonymous"></script>
-
-    <script>
-        (function () {
-
-            const params = (new URL(document.location)).searchParams;
-            const channel = params.get("channel") || params.get("channelID") || 97032862;
-
-            console.log(channel);
-
-            $("#demos").children().each(function (index, element) {
-                $(element).attr('href', $(element).attr('href') + "?channel=" + channel);
-            });
-
-        })();
-
-    </script>
 
 </body>
 
