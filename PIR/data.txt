@@ -1,8 +1,8 @@
-toxic__salt 100
-xstarwake   150
-skaterwax   50
-skylarpuppy 90
-wolfstop666 666
-somereallylongnameontwitch  132
-loserguy    40
-winnerguy   111
+toxic__salt:100
+xstarwake:150
+skaterwax:50
+skylarpuppy:90
+wolfstop666:666
+somereallylongnameontwitch:132
+loserguy:40
+winnerguy:111
