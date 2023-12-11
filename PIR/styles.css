@@ -15,6 +15,7 @@ body {
   position: relative;
   transform-origin: 50% 50%;
   transition: transform 3s ease-out;
+  overflow: hidden; /* Add this to hide overflow */
 }
 
 .section {
@@ -22,6 +23,13 @@ body {
   width: 100%;
   text-align: center;
   transform-origin: 50% 100%;
+  white-space: nowrap; /* Add this to prevent name wrapping */
+}
+
+/* Add this to enable vertical scrolling */
+.vertical-scroll {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 button {
