@@ -3,18 +3,18 @@ let winningNumber = 165; // Set your desired winning number
 
 // Function to fetch and parse data from the text file
 async function fetchData() {
-    try {
-      const response = await fetch('data.txt'); // Update with your actual file path
-      const data = await response.text();
-      return data.split('\n').map(line => {
-        const [name, number] = line.split(': ');
-        return { name, number: parseInt(number) };
-      });
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return [];
-    }
+  try {
+    const response = await fetch('data.txt'); // Update with your actual file path
+    const data = await response.text();
+    return data.split('\n').map(line => {
+      const [name, number] = line.split(':');
+      return { name: name.trim(), number: parseInt(number.trim()) };
+    });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
   }
+}
   
   // Function to sort the data by number
   function sortDataByNumber(data) {
